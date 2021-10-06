@@ -1,8 +1,6 @@
 <?php
 
-use app\core\User;
-use app\lib\Point;
-use app\lib\Circle;
+use app\core\Router;
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -13,7 +11,6 @@ spl_autoload_register(function($class){
         require $path;
     }
 });
-$user =new User();
-$point =new Point();
-$circle = new Circle();
+$user =new Router();
+
 
