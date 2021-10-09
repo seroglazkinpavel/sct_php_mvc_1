@@ -11,6 +11,7 @@ spl_autoload_register(function($class){
         require $path;
     }
 });
-$user =new Router();
+$router =new Router();
+$router -> run();
 
 
