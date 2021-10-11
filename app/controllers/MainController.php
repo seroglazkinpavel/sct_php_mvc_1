@@ -6,7 +6,8 @@ namespace app\controllers;
 
 class MainController
 {
-    public function actionIndex(){
+    public function actionIndex()
+    {
         echo 'Привет!';
     }
 }
