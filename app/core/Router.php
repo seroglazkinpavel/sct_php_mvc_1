@@ -32,7 +32,7 @@ class Router
 
     public function run()
     {
-        if ($this->match()){
+        if ($this->match()) {
             $path_controller = 'app\controllers\\'.ucfirst($this->params['controller']).'Controller';
             if (class_exists($path_controller)) {
                 $action = 'action'.ucfirst($this->params['action']);
