@@ -11,17 +11,17 @@ class Router
     public function match()
     {
         $url = trim($_SERVER['REQUEST_URL'], '/');
-        if(!empty($url)) {
+        if (!empty($url)) {
             $params = explode('/', $url);
-            if(!empty($params[0]) && !empty($params[1])) {
+            if (!empty($params[0]) && !empty($params[1])) {
                 $this->params = [
                     'controller' => $params[0],
                     'action' => $params[1]
                 ];
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             $this->params = [
                 'controller' => 'main',
                 'action' => 'index'
@@ -32,20 +32,20 @@ class Router
 
     public function run()
     {
-        if($this->match()){
-            $path_controller = 'app\controllers\\'.ucfirst($this -> params['controller']).'Controller';
-            if(class_exists($path_controller)) {
-                $action = 'action'.ucfirst($this -> params['action']);
-                if(method_exists($path_controller, $action)) {
+        if ($this->match()) {
+            $path_controller = 'app\controllers\\' . ucfirst($this->params['controller']) . 'Controller';
+            if (class_exists($path_controller)) {
+                $action = 'action' . ucfirst($this->params['action']);
+                if (method_exists($path_controller, $action)) {
                     $controller = new $path_controller;
-                    $controller -> $action();
-                }else{
+                    $controller->$action();
+                } else {
                     echo 'Action не найден';
                 }
-            }else{
-                echo 'Класс не найден:'.$path_controller;
+            } else {
+                echo 'Класс не найден:' . $path_controller;
             }
-        }else{
+        } else {
             echo 'Не найдено';
         }
     }
