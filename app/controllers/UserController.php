@@ -6,7 +6,8 @@ namespace app\controllers;
 
 class UserController
 {
-    public function actionSignup(){
+    public function actionSignup()
+    {
 
     }
 }
