@@ -3,11 +3,12 @@
 
 namespace app\controllers;
 
+use app\core\InitController;
 
-class MainController
+class MainController extends InitController
 {
     public function actionIndex()
     {
-        echo 'Привет!';
+        echo 'Главная страница!';
     }
 }

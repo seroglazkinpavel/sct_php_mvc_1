@@ -3,11 +3,13 @@
 
 namespace app\controllers;
 
+use app\core\InitController;
 
-class UserController
+
+class UserController extends InitController
 {
-    public function actionSignup()
+    public function actionLogin()
     {
-
+        echo 'Страница входа';
     }
 }
