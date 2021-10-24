@@ -10,7 +10,7 @@ class Router
 
     public function match()
     {
-        $url = trim($_SERVER['REQUEST_URL'], '/');
+        $url = trim($_SERVER['REQUEST_URI'], '/');
         if (!empty($url)) {
             $params = explode('/', $url);
             if (!empty($params[0]) && !empty($params[1])) {

@@ -10,6 +10,7 @@ class UserController extends InitController
 {
     public function actionLogin()
     {
-        echo 'Страница входа';
+        $this->view->title = 'Авторизация';
+        $this->render('login');
     }
 }

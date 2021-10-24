@@ -9,6 +9,7 @@ class MainController extends InitController
 {
     public function actionIndex()
     {
-        echo 'Главная страница!';
+        $this->view->title = 'Главная страница';
+        $this->render('main');
     }
 }
