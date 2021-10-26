@@ -40,13 +40,13 @@ class Router
                     $controller = new $path_controller($this->params);
                     $controller->$action();
                 } else {
-                    echo 'Action не найден';
+                    View::errorCode(404);
                 }
             } else {
-                echo 'Класс не найден:' . $path_controller;
+                View::errorCode(404);
             }
         } else {
-            echo 'Не найдено';
+            View::errorCode(404);
         }
     }
 }

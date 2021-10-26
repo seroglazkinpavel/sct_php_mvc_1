@@ -20,4 +20,9 @@ class InitController
         $this->view->render($view, $params);
     }
 
+    public function redirect($url)
+    {
+        $this->view->redirect($url);
+    }
+
 }
