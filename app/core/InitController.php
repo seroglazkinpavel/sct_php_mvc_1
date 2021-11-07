@@ -4,7 +4,7 @@
 namespace app\core;
 
 
-class InitController
+abstract class InitController
 {
     public $route;
     public $view;
