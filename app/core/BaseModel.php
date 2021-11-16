@@ -15,7 +15,7 @@ abstract class BaseModel
         $config = require 'app\config\db.php';
         try {
             $this->db = new PDO(
-            'mysql:host=' . $config['hostname'] . ';dbname=' . $config['database'],
+                'mysql:host=' . $config['hostname'] . ';dbname=' . $config['database'],
                 $config['username'],
                 $config['password']
             );
@@ -28,13 +28,13 @@ abstract class BaseModel
     protected function query($sql, $params = [])
     {
         $query = $this->db->prepare($sql);
-        if(!empty($params)) {
-            foreach($params as $key=>$val) {
+        if (!empty($params)) {
+            foreach ($params as $key => $val) {
                 $query->bindValue(':' . $key, $val);
             }
         }
         $query->execute();
-       return $query;
+        return $query;
     }
 
     protected function select($sql, $params = [])
@@ -45,7 +45,7 @@ abstract class BaseModel
 
     protected function inser($sql, $params = [])
     {
-         $this->query($sql, $params);
+        $this->query($sql, $params);
         return (int)$this->db->lastInsertId();
     }
 

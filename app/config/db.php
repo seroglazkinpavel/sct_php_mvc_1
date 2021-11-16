@@ -1,5 +1,5 @@
 <?php
-return[
+return [
     'hostname' => 'localhost',
     'database' => 'fraim',
     'username' => 'root',

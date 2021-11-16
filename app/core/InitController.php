@@ -15,6 +15,11 @@ abstract class InitController
         $this->view = new View($route);
     }
 
+    public function behaviors()
+    {
+        return [];
+    }
+
     public function render($view, $params = [])
     {
         $this->view->render($view, $params);
