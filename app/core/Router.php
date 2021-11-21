@@ -3,6 +3,7 @@
 
 namespace app\core;
 
+use app\lib\UserOperations;
 
 class Router
 {
