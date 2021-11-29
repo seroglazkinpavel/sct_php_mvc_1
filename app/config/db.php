@@ -1,4 +1,5 @@
 <?php
+
 return [
     'hostname' => 'localhost',
     'database' => 'fraim',

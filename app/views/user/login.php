@@ -27,13 +27,16 @@
                                placeholder="Введите пароль"
                         >
                     </div>
+                    <div class="links_box">
+                        <a href="/user/registration">Регистрация</a>
+                    </div>
                     <div class="button_box">
-                        <buttom type="submit"
+                        <button type="submit"
                                 name="btn_login_form"
                                 id="btnLoginForm"
                                 class="btn btn-primary"
                                 value="1"
-                        >Войти</buttom>
+                        >Войти</button>
                     </div>
                 </div>
             </form>

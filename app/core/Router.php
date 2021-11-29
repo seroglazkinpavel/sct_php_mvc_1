@@ -23,9 +23,10 @@ class Router
                 return false;
             }
         } else {
+            $params = require 'app/config/params.php';
             $this->params = [
-                'controller' => 'main',
-                'action' => 'index'
+                'controller' => $params['defaultController'],
+                'action' => $params['defaultAction']
             ];
         }
         return true;

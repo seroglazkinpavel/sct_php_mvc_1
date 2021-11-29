@@ -53,10 +53,14 @@ html {
     width: 100%;
 }
 
-.buttom_box .btn {
+.button_box .btn {
     cursor: pointer;
     font-size: 16px;
     line-height: 20px;
     padding: 6px;
     width: 100%;
+}
+
+.links_box {
+    padding-bottom: 17px;
 }
