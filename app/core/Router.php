@@ -49,6 +49,8 @@ class Router
                     }
                     return false;
                 }
+            } else {
+                return true;
             }
         }
         return false;

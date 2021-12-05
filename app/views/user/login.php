@@ -2,9 +2,13 @@
     <div class="container">
         <div class="auth_block">
             <h1 class="title">Авторизация</h1>
-            <form name="auth_form" metod="post">
+            <form name="auth_form" method="post">
                 <div class="auth_form">
-                    <div class="alert alert-danger hidden"></div>
+                    <div class="alert alert-danger <? if(empty($error_message)) : ?>hidden<?php endif;?>">
+                        <? if(!empty($error_message)) : ?>
+                            <?= $error_message ?>
+                        <?php endif ;?>
+                    </div>
                     <div class="input_box">
                         <label for="field_login">Логин</label>
                         <input type="text"
@@ -12,12 +16,12 @@
                                id="field_login"
                                class="form-control"
                                maxlength="24"
-                               value=""
+                               value="<?= !empty($_POST['login']) ? $_POST['login'] : ''?>"
                                placeholder="Введите логин"
                         >
                     </div>
                     <div class="input_box">
-                        <label for="field_login">Пароль</label>
+                        <label for="field_password">Пароль</label>
                         <input type="password"
                                name="password"
                                id="field_password"
