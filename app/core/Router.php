@@ -49,11 +49,9 @@ class Router
                     }
                     return false;
                 }
-            } else {
-                return true;
             }
         }
-        return false;
+        return true;
     }
 
     public function run()

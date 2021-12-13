@@ -5,7 +5,10 @@ namespace app\controllers;
 
 use app\core\InitController;
 
+use app\lib\UserOperations;
+
 use app\models\UsersModel;
+
 
 class UserController extends InitController
 {
@@ -16,9 +19,16 @@ class UserController extends InitController
                 'rules' => [
                     [
                         'actions' => ['login', 'registration'],
-                        'roles' => ['guest'],
+                        'roles' => [UserOperations::RoleGuest],
                         'matchCallback' => function() {
                             $this->redirect('/user/profile');
+                        }
+                    ],
+                    [
+                        'actions' => ['profile'],
+                        'roles' => [UserOperations::RoleUser, UserOperations::RoleAdmin],
+                        'matchCallback' => function() {
+                            $this->redirect('/user/login');
                         }
                     ]
                 ]
@@ -87,6 +97,15 @@ class UserController extends InitController
         }
         $this->render('registration', [
             'error_message' => $error_message
+        ]);
+    }
+
+    public function actionProfile()
+    {
+        $this->view->title = 'Мой профиль';
+
+        $this->render('profile', [
+            'sidebar' => UserOperations::getMenuLinks()
         ]);
     }
 }
