@@ -126,3 +126,18 @@ html {
     text-align: center;
 }
 /*end cabinet*/
+/*profile*/
+.profile-block .profile-item {
+    max-width: 100%;
+    width: 48%;
+}
+
+.profile-block .profile-item .profile-item_title {
+    display: block;
+    font-size: 20px;
+    line-height: 24px;
+    padding-bottom: 15px;
+    text-align: center;
+    width: 100%;
+}
+/*end profile*/

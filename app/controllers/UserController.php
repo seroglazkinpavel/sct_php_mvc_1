@@ -103,9 +103,24 @@ class UserController extends InitController
     public function actionProfile()
     {
         $this->view->title = 'Мой профиль';
+        $error_message = '';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['btn_change_password_form'])) {
+            $current_password = !empty($_POST['current_password']) ? $_POST['current_password'] : null;
+            $new_password = !empty($_POST['new_password']) ? $_POST['new_password'] : null;
+            $confirm_new_password = !empty($_POST['confirm_new_password']) ? $_POST['confirm_new_password'] : null;
+            $userModel = new UsersModel;
+            $result_auth = $userModel->changePasswordByCurrentPassword($current_password, $new_password, $confirm_new_password);
+            if ($result_auth['result']) {
+                $this->redirect('/user/profile');
+            } else {
+                $error_message = $result_auth['error_message'];
+            }
+        }
 
         $this->render('profile', [
-            'sidebar' => UserOperations::getMenuLinks()
+            'sidebar' => UserOperations::getMenuLinks(),
+            'error_message' => $error_message
         ]);
     }
 }
