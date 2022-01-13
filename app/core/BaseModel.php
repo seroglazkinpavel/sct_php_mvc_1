@@ -43,7 +43,7 @@ abstract class BaseModel
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    protected function inser($sql, $params = [])
+    protected function insert($sql, $params = [])
     {
         $this->query($sql, $params);
         return (int)$this->db->lastInsertId();

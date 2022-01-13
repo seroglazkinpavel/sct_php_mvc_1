@@ -10,7 +10,7 @@ class UsersModel extends BaseModel
     public function addNewUser($username, $login, $password)
     {
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $user_id = $this->inser(
+        $user_id = $this->insert(
             'INSERT INTO `users` (`username`, `login`, `password`) VALUES (:username, :login, :password)',
             [
                 'username' => $username,

@@ -53,7 +53,7 @@ class UserController extends InitController
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['btn_login_form'])) {
             $login = !empty($_POST['login']) ? $_POST['login'] : null;
             $password = !empty($_POST['password']) ? $_POST['password'] : null;
-            $userModel = new UsersModel;
+            $userModel = new UsersModel();
             $result_auth = $userModel->authByLogin($login, $password);
             if ($result_auth['result']) {
                 $this->redirect('/user/profile');
@@ -87,7 +87,7 @@ class UserController extends InitController
                 $error_message = 'Пароли не совпадают!';
             }
             if (empty($error_message)) {
-                $userModel = new UsersModel;
+                $userModel = new UsersModel();
                 $user_id = $userModel->addNewUser($username, $login, $password);
 
                 if (!empty($user_id)) {
@@ -109,7 +109,7 @@ class UserController extends InitController
             $current_password = !empty($_POST['current_password']) ? $_POST['current_password'] : null;
             $new_password = !empty($_POST['new_password']) ? $_POST['new_password'] : null;
             $confirm_new_password = !empty($_POST['confirm_new_password']) ? $_POST['confirm_new_password'] : null;
-            $userModel = new UsersModel;
+            $userModel = new UsersModel();
             $result_auth = $userModel->changePasswordByCurrentPassword($current_password, $new_password, $confirm_new_password);
             if ($result_auth['result']) {
                 $this->redirect('/user/profile');
