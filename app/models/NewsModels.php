@@ -7,6 +7,7 @@ use app\core\BaseModel;
 
 class NewsModels extends BaseModel
 {
+    // Метод добавление новостей
     public function add($news_data)
     {
         $result = false;
@@ -39,5 +40,16 @@ class NewsModels extends BaseModel
             'result' => $result,
             'error_message' => $error_message
         ];
+    }
+
+    // Метод по выводу всех новостей
+    public function getListNews()
+    {
+        $result = null;
+        $news = $this->select("SELECT * FROM `news`");
+        if (!empty($news)) {
+            $result = $news;
+        }
+        return $result;
     }
 }

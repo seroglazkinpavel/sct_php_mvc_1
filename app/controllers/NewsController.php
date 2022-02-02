@@ -38,8 +38,13 @@ class NewsController extends InitController
     {
         $this->view->title = 'Новости';
 
+        $userModel = new NewsModels();
+        $news =$userModel->getListNews();
+
         $this->render('list', [
             'sidebar' => UserOperations::getMenuLinks(),
+            'role' => UserOperations::getRoleUser(),
+            'news' => $news
         ]);
     }
 
