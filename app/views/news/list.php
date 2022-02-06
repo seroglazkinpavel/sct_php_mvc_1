@@ -35,7 +35,7 @@ use app\lib\UserOperations;
                                     <?php foreach ($news as $item) : ?>
                                         <div class="news-item">
                                             <h3>
-                                                <?= $item['title'] ?><span>от <?= date('d.m.Y H:i:s', strtotime($item['date_create'])) ?></span>
+                                                <?= $item['title'] ?><span> от <?= date('d.m.Y H:i:s', strtotime($item['date_create'])) ?></span>
                                                 <?php if ($role === \app\lib\UserOperations::RoleAdmin) : ?>
                                                     (<a href="/news/edit?news_id=<?= $item['id'] ?>">редактировать</a> <a
                                                             href="news/delete?news_id=<?= $item['id'] ?>">удалить</a>)
