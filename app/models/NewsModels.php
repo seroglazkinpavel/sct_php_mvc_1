@@ -78,6 +78,33 @@ class NewsModels extends BaseModel
         ];
     }
 
+    public function deleteById($news_id)
+    {
+        $result = false;
+        $error_message = '';
+
+        if (empty($news_id)) {
+            $error_message = 'Отсутствует индентификатор записи!';
+        }
+
+        if (empty($error_message)) {
+            $news_id = $this->delete(
+                'DELETE FROM `news` WHERE `id`=:id',
+
+                [
+                    'id' => $news_id,
+                ]
+            );
+
+            $result = $news_id;
+        }
+
+        return [
+            'result' => $result,
+            'error_message' => $error_message
+        ];
+    }
+
     // Метод по выводу всех новостей
     public function getListNews()
     {

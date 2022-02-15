@@ -110,4 +110,43 @@ class NewsController extends InitController
             'news' => $news
         ]);
     }
+
+    public function actionDelete()
+    {
+        $this->view->title = 'Удаление новости';
+        $news_id = !empty($_GET['news_id']) ? $_GET['news_id'] : null;
+        $news = null;
+        $error_message = '';
+		
+		
+        if (!empty($news_id)) {
+            $newsModel =new NewsModels();
+            $news =  $newsModel->getNewsById($news_id);
+            if (empty($news)) {
+                $error_message = 'Новость не найдена!';
+            }
+        } else {
+            $error_message = 'Отсутствует индентификатор записи!';
+        }
+		
+		if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['btn_news_delete_form'])) {
+            $result_delete = $newsModel->deleteById($news_id);
+
+            if ($result_delete['result']) {
+                $this->redirect('/news/list');
+            } else {
+                $error_message =$result_delete['error_message'];
+            }
+		}
+		
+		if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['btn_news_notDelete_form'])) {
+            $this->redirect('/news/list');
+		}
+		
+        $this->render('delete', [
+            'sidebar' => UserOperations::getMenuLinks(),
+            'error_message' => $error_message,
+            'news' => $news
+        ]);
+    }
 }

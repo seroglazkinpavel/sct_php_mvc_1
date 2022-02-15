@@ -173,3 +173,13 @@ textarea {
     padding-bottom: 8px;
 }
 /*end news*/
+
+.wrap_button {
+	display: flex;
+    justify-content: space-between;
+}
+
+.button_box {
+	width: 40%;
+	margin-bottom: 20px;
+}
