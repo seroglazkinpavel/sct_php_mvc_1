@@ -48,7 +48,7 @@ class Router
                 if (in_array(UserOperations::getRoleUser(), $rule['roles'])) {
                     return true;
                 } else {
-                    if (iseet($rule['matchCallback'])) {
+                    if (isset($rule['matchCallback'])) {
                         call_user_func($rule['matchCallback']);
                     } else {
                         View::errorCode(403);
@@ -59,6 +59,8 @@ class Router
         }
         return true;
     }
+
+    // Метод который будет запускать class Router
 
     public function run()
     {

@@ -32,24 +32,27 @@
                                 <?php endif; ?>
                             </div>
 							<p>Вы действительно хотите удалить новость <?= $news['title']?></p>
-							<div class="wrap_button">
-								<div class="button_box">						
-									<button type="submit"
-											name="btn_news_delete_form"
-											id="btnNewsDeleteForm"
-											class="btn btn-primary"
-											value="1"
-									>Yes</button>
-								</div><br>
-								<div class="button_box">						
-									<button type="submit"
-											name="btn_news_notDelete_form"
-											id="btnNewsDeleteForm"
-											class="btn btn-primary"
-											value="1"
-									>not</button>
-								</div>
-							</div>
+                            <div class="wrap_button">
+                                <div class="button_box">
+                                    <button type="submit"
+                                            name="btn_news_delete_form"
+                                            id="btnNewsDeleteForm"
+                                            class="btn btn-primary"
+                                            value="1"
+                                    >Yes
+                                    </button>
+                                </div>
+                                <br>
+                                <div class="button_box">
+                                    <button type="submit"
+                                            name="btn_news_notDelete_form"
+                                            id="btnNewsDeleteForm"
+                                            class="btn btn-primary"
+                                            value="1"
+                                    >not
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
