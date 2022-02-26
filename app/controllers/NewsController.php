@@ -26,7 +26,7 @@ class NewsController extends InitController
                         'actions' => ['add', 'edit'],
                         'roles' => [UserOperations::RoleAdmin],
                         'matchCallback' => function () {
-                        $this->redirect('/news/list');
+                            $this->redirect('/news/list');
                         }
                     ]
                 ]
@@ -39,7 +39,7 @@ class NewsController extends InitController
         $this->view->title = 'Новости';
 
         $userModel = new NewsModels();
-        $news =$userModel->getListNews();
+        $news = $userModel->getListNews();
 
         $this->render('list', [
             'sidebar' => UserOperations::getMenuLinks(),
@@ -89,14 +89,14 @@ class NewsController extends InitController
                 if ($result_edit['result']) {
                     $this->redirect('/news/list');
                 } else {
-                    $error_message =$result_edit['error_message'];
+                    $error_message = $result_edit['error_message'];
                 }
             }
         }
 
         if (!empty($news_id)) {
-            $newsModel =new NewsModels();
-            $news =  $newsModel->getNewsById($news_id);
+            $newsModel = new NewsModels();
+            $news = $newsModel->getNewsById($news_id);
             if (empty($news)) {
                 $error_message = 'Новость не найдена!';
             }
@@ -117,11 +117,11 @@ class NewsController extends InitController
         $news_id = !empty($_GET['news_id']) ? $_GET['news_id'] : null;
         $news = null;
         $error_message = '';
-		
-		
+
+
         if (!empty($news_id)) {
-            $newsModel =new NewsModels();
-            $news =  $newsModel->getNewsById($news_id);
+            $newsModel = new NewsModels();
+            $news = $newsModel->getNewsById($news_id);
             if (empty($news)) {
                 $error_message = 'Новость не найдена!';
             }
@@ -142,7 +142,7 @@ class NewsController extends InitController
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['btn_news_notDelete_form'])) {
             $this->redirect('/news/list');
         }
-		
+
         $this->render('delete', [
             'sidebar' => UserOperations::getMenuLinks(),
             'error_message' => $error_message,

@@ -1,26 +1,28 @@
 <?php
 /** @var array $sidebar - Меню */
+
 /** @var array $user - Пользователь */
 
 
 use app\lib\UserOperations;
+
 ?>
 
 <div class="page">
     <div class="container">
         <div class="cabinet_wrapper">
             <div class="cabinet_sidebar">
-                <?php if (!empty($sidebar)) :?>
+                <?php if (!empty($sidebar)) : ?>
                     <div class="menu_box">
                         <ul>
-                            <?php foreach($sidebar as $link) :?>
+                            <?php foreach ($sidebar as $link) : ?>
                                 <li>
-                                    <a href="<?= $link['link']?>"><?= $link['title']?></a>
+                                    <a href="<?= $link['link'] ?>"><?= $link['title'] ?></a>
                                 </li>
-                            <?php endforeach?>
+                            <?php endforeach ?>
                         </ul>
                     </div>
-                <?php endif;?>
+                <?php endif; ?>
             </div>
             <div class="cabinet_content">
                 <div class="page-content-inner">

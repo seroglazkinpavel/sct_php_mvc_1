@@ -1,26 +1,28 @@
 <?php
 /** @var array $sidebar - Меню */
+
 /** @var array $users - Список пользователей */
 
 
 use app\lib\UserOperations;
+
 ?>
 
 <div class="page">
     <div class="container">
         <div class="cabinet_wrapper">
             <div class="cabinet_sidebar">
-                <?php if (!empty($sidebar)) :?>
+                <?php if (!empty($sidebar)) : ?>
                     <div class="menu_box">
                         <ul>
-                            <?php foreach($sidebar as $link) :?>
+                            <?php foreach ($sidebar as $link) : ?>
                                 <li>
-                                    <a href="<?= $link['link']?>"><?= $link['title']?></a>
+                                    <a href="<?= $link['link'] ?>"><?= $link['title'] ?></a>
                                 </li>
-                            <?php endforeach?>
+                            <?php endforeach ?>
                         </ul>
                     </div>
-                <?php endif;?>
+                <?php endif; ?>
             </div>
             <div class="cabinet_content">
                 <div class="page-content-inner">
@@ -39,7 +41,7 @@ use app\lib\UserOperations;
                                        id="field_username"
                                        class="form-control"
                                        maxlength="120"
-                                       value="<?=!empty($_POST['username']) ? $_POST['username'] : '' ?>"
+                                       value="<?= !empty($_POST['username']) ? $_POST['username'] : '' ?>"
                                        placeholder="Введите имя"
                                 >
                             </div>
@@ -50,7 +52,7 @@ use app\lib\UserOperations;
                                        id="field_login"
                                        class="form-control"
                                        maxlength="24"
-                                       value="<?=!empty($_POST['login']) ? $_POST['login'] : '' ?>"
+                                       value="<?= !empty($_POST['login']) ? $_POST['login'] : '' ?>"
                                        placeholder="Введите логин"
                                 >
                             </div>
@@ -82,7 +84,8 @@ use app\lib\UserOperations;
                                         id="btnUserAddForm"
                                         class="btn btn-primary"
                                         value="1"
-                                >Добавить</button>
+                                >Добавить
+                                </button>
                             </div>
                         </div>
                     </form>

@@ -7,37 +7,37 @@ use app\core\BaseModel;
 
 class UsersModel extends BaseModel
 {
-	public function addUser($username, $login, $password)
+    public function addUser($username, $login, $password)
     {
-		$result = false;
+        $result = false;
         $error_message = '';
 
         $users = $this->selectOne(
             "SELECT * FROM `users` WHERE `login` =:login",
             [
                 'login' => $login
-            ]			
-        );
-		$result = $users;
-		if (!empty($result)){
-			$error_message = 'Такой пользователь есть.';
-		} else {
-			$password = password_hash($password, PASSWORD_DEFAULT);
-			$result = $this->insert(
-            'INSERT INTO `users` (`username`, `login`, `password`) VALUES (:username, :login, :password)',
-            [
-                'username' => $username,
-                'login' => $login,
-                'password' => $password
             ]
         );
-		}
-		return [
+        $result = $users;
+        if (!empty($result)) {
+            $error_message = 'Такой пользователь есть.';
+        } else {
+            $password = password_hash($password, PASSWORD_DEFAULT);
+            $result = $this->insert(
+                'INSERT INTO `users` (`username`, `login`, `password`) VALUES (:username, :login, :password)',
+                [
+                    'username' => $username,
+                    'login' => $login,
+                    'password' => $password
+                ]
+            );
+        }
+        return [
             'result' => $result,
             'error_message' => $error_message
         ];
     }
-	
+
     public function addNewUser($username, $login, $password)
     {
         $password = password_hash($password, PASSWORD_DEFAULT);
@@ -51,6 +51,7 @@ class UsersModel extends BaseModel
         );
         return $user_id;
     }
+
     public function authByLogin($login, $password)
     {
         $result = false;
@@ -62,7 +63,7 @@ class UsersModel extends BaseModel
             $error_message = 'Введите пароль!';
         }
         if (empty($error_message)) {
-            $users = $this -> select(
+            $users = $this->select(
                 "SELECT * FROM `users` WHERE `login` =:login",
                 [
                     'login' => $login
@@ -80,10 +81,10 @@ class UsersModel extends BaseModel
 
                     $result = true;
                 } else {
-                    $error_message ='Неверный логин или пароль';
+                    $error_message = 'Неверный логин или пароль';
                 }
             } else {
-                $error_message ='Пользователь не найден';
+                $error_message = 'Пользователь не найден';
             }
         }
         return [
@@ -107,7 +108,7 @@ class UsersModel extends BaseModel
             $error_message = 'Пароли не совпадают!';
         }
         if (empty($error_message)) {
-            $users = $this -> select(
+            $users = $this->select(
                 "SELECT * FROM `users` WHERE `login` =:login",
                 [
                     'login' => $_SESSION['user']['login']
@@ -139,14 +140,14 @@ class UsersModel extends BaseModel
         ];
     }
 
-	public function edit($user_id, $user_data)
-    {      
-		$result = false;
+    public function edit($user_id, $user_data)
+    {
+        $result = false;
         $error_message = '';
 
         if (empty($user_id)) {
-		    $error_message = 'Отсутствует идентификатор пользователя!';
-		} elseif(empty($user_data['username'])) {
+            $error_message = 'Отсутствует идентификатор пользователя!';
+        } elseif (empty($user_data['username'])) {
             $error_message = 'Введите Ваше имя!';
         } elseif (empty($user_data['password'])) {
             $error_message = 'Введите пароль!';
@@ -155,74 +156,74 @@ class UsersModel extends BaseModel
         } elseif ($user_data['password'] !== $user_data['confirm_password']) {
             $error_message = 'Пароли не совпадают!';
         }
-		if (empty($error_message)) {
-			$user_data['password'] = password_hash($user_data['password'], PASSWORD_DEFAULT);
-			$user_id = $this->update(
-				'UPDATE `users` SET `username`=:username, `password`=:password WHERE `id`=:id',
-				[
-					'username' => $user_data['username'],
-					'password' => $user_data['password'],
-					'id' => $user_id
-				]
-			);
-			$result = $user_id;
-		}
-							
-		return [
+        if (empty($error_message)) {
+            $user_data['password'] = password_hash($user_data['password'], PASSWORD_DEFAULT);
+            $user_id = $this->update(
+                'UPDATE `users` SET `username`=:username, `password`=:password WHERE `id`=:id',
+                [
+                    'username' => $user_data['username'],
+                    'password' => $user_data['password'],
+                    'id' => $user_id
+                ]
+            );
+            $result = $user_id;
+        }
+
+        return [
             'result' => $result,
             'error_message' => $error_message
         ];
     }
-	
-	public function deleteById ($user_id) 
-	{
-		$result = false;
+
+    public function deleteById($user_id)
+    {
+        $result = false;
         $error_message = '';
 
         if (empty($user_id)) {
-		    $error_message = 'Отсутствует идентификатор пользователя!';
-		}
-		
-		if (empty($error_message)) {
-			$user_id = $this->delete(
-				'DELETE FROM `users`  WHERE `id`=:id',
-				[
-					'id' => $user_id
-				]
-			);
-			$result = $user_id;
-		}
-							
-		return [
+            $error_message = 'Отсутствует идентификатор пользователя!';
+        }
+
+        if (empty($error_message)) {
+            $user_id = $this->delete(
+                'DELETE FROM `users`  WHERE `id`=:id',
+                [
+                    'id' => $user_id
+                ]
+            );
+            $result = $user_id;
+        }
+
+        return [
             'result' => $result,
             'error_message' => $error_message
         ];
-	}
-	
+    }
+
     // Метод по выводу всех пользователей
 
     public function getListUsers()
     {
         $result = null;
-        
-		$users = $this->select("SELECT `id`, `username`, `login`, `is_admin` FROM `users`");
+
+        $users = $this->select("SELECT `id`, `username`, `login`, `is_admin` FROM `users`");
         if (!empty($users)) {
             $result = $users;
         }
         return $result;
     }
-	
-	public function getUserById($user_id)
+
+    public function getUserById($user_id)
     {
         $result = null;
-        
-		$users = $this->select(
-			"SELECT * FROM `users` WHERE `id`=:id",
-			[
-				'id' => $user_id
-			]
-		);
-		
+
+        $users = $this->select(
+            "SELECT * FROM `users` WHERE `id`=:id",
+            [
+                'id' => $user_id
+            ]
+        );
+
         if (!empty($users[0])) {
             $result = $users[0];
         }

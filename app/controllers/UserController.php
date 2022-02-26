@@ -20,28 +20,28 @@ class UserController extends InitController
                     [
                         'actions' => ['login', 'registration'],
                         'roles' => [UserOperations::RoleGuest],
-                        'matchCallback' => function() {
+                        'matchCallback' => function () {
                             $this->redirect('/user/profile');
                         }
                     ],
                     [
                         'actions' => ['profile'],
                         'roles' => [UserOperations::RoleUser, UserOperations::RoleAdmin],
-                        'matchCallback' => function() {
+                        'matchCallback' => function () {
                             $this->redirect('/user/login');
                         }
                     ],
                     [
                         'actions' => ['users'],
                         'roles' => [UserOperations::RoleUser, UserOperations::RoleAdmin],
-                        'matchCallback' => function() {
+                        'matchCallback' => function () {
                             $this->redirect('/user/login');
                         }
                     ],
                     [
                         'actions' => ['add', 'edit'],
                         'roles' => [UserOperations::RoleAdmin],
-                        'matchCallback' => function() {
+                        'matchCallback' => function () {
                             $this->redirect('/user/login');
                         }
                     ]
@@ -56,7 +56,7 @@ class UserController extends InitController
             unset($_SESSION['user']);
         }
         $params = require 'app/config/params.php';
-        $this -> redirect('/' . $params['defaultController'] . '/' . $params['defaultAction']);
+        $this->redirect('/' . $params['defaultController'] . '/' . $params['defaultAction']);
     }
 
     public function actionLogin()
@@ -143,7 +143,7 @@ class UserController extends InitController
         $this->view->title = 'Пользователи';
 
         $userModel = new UsersModel();
-        $users =$userModel->getListUsers();
+        $users = $userModel->getListUsers();
 
         $this->render('list', [
             'sidebar' => UserOperations::getMenuLinks(),
@@ -157,7 +157,7 @@ class UserController extends InitController
         $this->view->title = 'Добавление пользователя';
         $error_message = '';
 
-		if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['btn_user_add_form'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['btn_user_add_form'])) {
             $username = !empty($_POST['username']) ? $_POST['username'] : null;
             $login = !empty($_POST['login']) ? $_POST['login'] : null;
             $password = !empty($_POST['password']) ? $_POST['password'] : null;
@@ -184,52 +184,52 @@ class UserController extends InitController
         }
 
         $this->render('add', [
-            'sidebar' => UserOperations::getMenuLinks(),            
+            'sidebar' => UserOperations::getMenuLinks(),
             'error_message' => $error_message
 
         ]);
     }
-	
-	public function actionEdit()
+
+    public function actionEdit()
     {
         $this->view->title = 'Редактирования пользователя';
-        $user_id = !empty($_GET['user_id']) ? $_GET['user_id'] : null;		
-		$user = null;
-		$error_message = '';
+        $user_id = !empty($_GET['user_id']) ? $_GET['user_id'] : null;
+        $user = null;
+        $error_message = '';
 
-		if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['btn_user_edit_form'])) {
-			$user_data = !empty($_POST['user']) ? $_POST['user'] : null;
-			
-			if (!empty($user_data)) {
-				$userModel = new UsersModel();
-				$result_edit = $userModel->edit($user_id, $user_data);
-				if ($result_edit['result']) {
-					$this->redirect('/user/users');
-				} else {
-					$error_message = $result_edit['error_message'];
-				}
-			}
-		}
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['btn_user_edit_form'])) {
+            $user_data = !empty($_POST['user']) ? $_POST['user'] : null;
 
-		if (!empty($user_id)) {
-			$userModel = new UsersModel();
+            if (!empty($user_data)) {
+                $userModel = new UsersModel();
+                $result_edit = $userModel->edit($user_id, $user_data);
+                if ($result_edit['result']) {
+                    $this->redirect('/user/users');
+                } else {
+                    $error_message = $result_edit['error_message'];
+                }
+            }
+        }
+
+        if (!empty($user_id)) {
+            $userModel = new UsersModel();
             $user = $userModel->getUserById($user_id);
 
             if (empty($user)) {
                 $error_message = 'Пользователь не найден!';
             }
-		} else {
-			$error_message = 'Отсутствует идентификатор записи!';
-		}
-		
+        } else {
+            $error_message = 'Отсутствует идентификатор записи!';
+        }
+
         $this->render('edit', [
-            'sidebar' => UserOperations::getMenuLinks(),            
+            'sidebar' => UserOperations::getMenuLinks(),
             'error_message' => $error_message,
-            'user' => $user	
+            'user' => $user
         ]);
     }
 
-    public function actionDelete ()
+    public function actionDelete()
     {
         $this->view->title = 'Удаление пользователя';
         $user_id = !empty($_GET['user_id']) ? $_GET['user_id'] : null;
@@ -241,14 +241,14 @@ class UserController extends InitController
             $user = $userModel->getUserById($user_id);
 
             if (!empty($user)) {
-				$result_delete = $userModel->deleteById($user_id);
-				if ($result_delete['result']) {
-					$this->redirect('/user/users');
-				} else {
-					$error_message = $result_delete['error_message'];
-				}
-			} else {    
-				$error_message = 'Пользователь не найден!';
+                $result_delete = $userModel->deleteById($user_id);
+                if ($result_delete['result']) {
+                    $this->redirect('/user/users');
+                } else {
+                    $error_message = $result_delete['error_message'];
+                }
+            } else {
+                $error_message = 'Пользователь не найден!';
             }
         } else {
             $error_message = 'Отсутствует идентификатор записи!';
