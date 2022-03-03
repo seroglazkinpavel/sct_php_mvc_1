@@ -32,7 +32,7 @@ use app\lib\UserOperations;
                                     <?= $error_message ?>
                                 <?php endif; ?>
                             </div>
-							<?php if (!empty($user)) : ?>
+			    <?php if (!empty($user)) : ?>
                                 <div class="input_box">
                                     <label for="field_username">Имя</label>
                                     <input type="text"
@@ -74,7 +74,7 @@ use app\lib\UserOperations;
                                           value="1"
                                   >Редактировать</button>
                                 <div>
-							<?php endif;?>
+			    <?php endif;?>
                         </div>
                     </form>
                 </div>
