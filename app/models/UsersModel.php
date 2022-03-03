@@ -22,15 +22,7 @@ class UsersModel extends BaseModel
         if (!empty($result)) {
             $error_message = 'Такой пользователь есть.';
         } else {
-            $password = password_hash($password, PASSWORD_DEFAULT);
-            $result = $this->insert(
-                'INSERT INTO `users` (`username`, `login`, `password`) VALUES (:username, :login, :password)',
-                [
-                    'username' => $username,
-                    'login' => $login,
-                    'password' => $password
-                ]
-            );
+            $result = $this->addNewUser($username, $login, $password);
         }
         return [
             'result' => $result,
@@ -182,6 +174,8 @@ class UsersModel extends BaseModel
 
         if (empty($user_id)) {
             $error_message = 'Отсутствует идентификатор пользователя!';
+        } elseif ($_SESSION['user']['id'] === $user_id) {
+            $error_message = 'Вы не можете себя удалить!';
         }
 
         if (empty($error_message)) {

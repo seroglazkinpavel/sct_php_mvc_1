@@ -37,7 +37,7 @@ abstract class BaseModel
         return $query;
     }
 
-	protected function selectOne($sql, $params = [])
+    protected function selectOne($sql, $params = [])
     {
         $result = $this->query($sql, $params);
         return $result->fetch(PDO::FETCH_ASSOC);

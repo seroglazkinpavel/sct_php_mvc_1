@@ -2,17 +2,17 @@
     <div class="container">
         <div class="cabinet_wrapper">
             <div class="cabinet_sidebar">
-                <?php if (!empty($sidebar)) :?>
+                <?php if (!empty($sidebar)) : ?>
                     <div class="menu_box">
-                       <ul>
-                           <?php foreach($sidebar as $link) :?>
-                               <li>
-                                   <a href="<?= $link['link']?>"><?= $link['title']?></a>
-                               </li>
-                           <?php endforeach?>
-                       </ul>
+                        <ul>
+                            <?php foreach ($sidebar as $link) : ?>
+                                <li>
+                                    <a href="<?= $link['link'] ?>"><?= $link['title'] ?></a>
+                                </li>
+                            <?php endforeach ?>
+                        </ul>
                     </div>
-                <?php endif;?>
+                <?php endif; ?>
             </div>
             <div class="cabinet_content">
                 <div class="page-content-inner">
@@ -60,7 +60,8 @@
                                                 id="btnChangePasswordForm"
                                                 class="btn btn-primary"
                                                 value="1"
-                                        >Сменить пароль</button>
+                                        >Сменить пароль
+                                        </button>
                                     </div>
                                 </form>
                             </div>

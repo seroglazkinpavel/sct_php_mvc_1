@@ -1,5 +1,5 @@
 <?php
-    /** @var string $error_message - Текст ошибки */
+/** @var string $error_message - Текст ошибки */
 ?>
 <div class="page">
     <div class="container">
@@ -19,7 +19,7 @@
                                id="field_username"
                                class="form-control"
                                maxlength="120"
-                               value="<?=!empty($_POST['username']) ? $_POST['username'] : '' ?>"
+                               value="<?= !empty($_POST['username']) ? $_POST['username'] : '' ?>"
                                placeholder="Введите имя"
                         >
                     </div>
@@ -30,7 +30,7 @@
                                id="field_login"
                                class="form-control"
                                maxlength="24"
-                               value="<?=!empty($_POST['login']) ? $_POST['login'] : '' ?>"
+                               value="<?= !empty($_POST['login']) ? $_POST['login'] : '' ?>"
                                placeholder="Введите логин"
                         >
                     </div>
@@ -62,7 +62,8 @@
                                 id="btnRegistrationForm"
                                 class="btn btn-primary"
                                 value="1"
-                        >Регистрация</button>
+                        >Регистрация
+                        </button>
                     </div>
                 </div>
             </form>

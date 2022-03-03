@@ -25,14 +25,7 @@ class UserController extends InitController
                         }
                     ],
                     [
-                        'actions' => ['profile'],
-                        'roles' => [UserOperations::RoleUser, UserOperations::RoleAdmin],
-                        'matchCallback' => function () {
-                            $this->redirect('/user/login');
-                        }
-                    ],
-                    [
-                        'actions' => ['users'],
+                        'actions' => ['profile', 'users'],
                         'roles' => [UserOperations::RoleUser, UserOperations::RoleAdmin],
                         'matchCallback' => function () {
                             $this->redirect('/user/login');

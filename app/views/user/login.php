@@ -4,10 +4,10 @@
             <h1 class="title">Авторизация</h1>
             <form name="auth_form" method="post">
                 <div class="auth_form">
-                    <div class="alert alert-danger <? if(empty($error_message)) : ?>hidden<?php endif;?>">
-                        <? if(!empty($error_message)) : ?>
+                    <div class="alert alert-danger <? if (empty($error_message)) : ?>hidden<?php endif; ?>">
+                        <? if (!empty($error_message)) : ?>
                             <?= $error_message ?>
-                        <?php endif ;?>
+                        <?php endif; ?>
                     </div>
                     <div class="input_box">
                         <label for="field_login">Логин</label>
@@ -16,7 +16,7 @@
                                id="field_login"
                                class="form-control"
                                maxlength="24"
-                               value="<?= !empty($_POST['login']) ? $_POST['login'] : ''?>"
+                               value="<?= !empty($_POST['login']) ? $_POST['login'] : '' ?>"
                                placeholder="Введите логин"
                         >
                     </div>
@@ -40,7 +40,8 @@
                                 id="btnLoginForm"
                                 class="btn btn-primary"
                                 value="1"
-                        >Войти</button>
+                        >Войти
+                        </button>
                     </div>
                 </div>
             </form>
