@@ -19,8 +19,9 @@ class UsersModel extends BaseModel
             ]
         );
         $result = $users;
+
         if (!empty($result)) {
-            $error_message = 'Такой пользователь есть.';
+            $error_message = 'Такой пользователь есть!';
         } else {
             $result = $this->addNewUser($username, $login, $password);
         }

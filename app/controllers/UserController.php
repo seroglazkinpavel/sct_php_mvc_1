@@ -166,20 +166,19 @@ class UserController extends InitController
             } elseif ($password !== $confirm_password) {
                 $error_message = 'Пароли не совпадают!';
             }
-            if (empty($error_message)) {
-                $userModel = new UsersModel();
-                $user_id = $userModel->addUser($username, $login, $password);
 
-                if (!empty($user_id)) {
-                    $this->redirect('/user/users');
-                }
+            $userModel = new UsersModel();
+            $user_id = $userModel->addUser($username, $login, $password);
+            if (!empty($user_id['error_message'])) $error_message = 'Такой пользователь есть!';
+
+            if (empty($error_message) && !empty($user_id)) {
+                $this->redirect('/user/users');
             }
         }
 
         $this->render('add', [
             'sidebar' => UserOperations::getMenuLinks(),
             'error_message' => $error_message
-
         ]);
     }
 
