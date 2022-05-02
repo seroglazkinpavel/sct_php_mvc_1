@@ -1,0 +1,15 @@
+a:2:{s:4:"data";s:515:"<li>
+    <a href="/category/lukvechnye">ЛУКОВИЧНЫЕ</a>
+    </li><li>
+    <a href="/category/perennials">МНОГОЛЕТНИКИ</a>
+    </li><li>
+    <a href="/category/ornamental-shrubs">КУСТАРНИКИ</a>
+    </li><li>
+    <a href="/category/coniferous">ХВОЙНЫЕ</a>
+    </li><li>
+    <a href="/category/roses">РОЗЫ</a>
+    </li><li>
+    <a href="/category/fruit-trees">ПЛОДОВЫЕ</a>
+    </li><li>
+    <a href="/category/related-products">ТОВАРЫ</a>
+    </li>";s:8:"end_time";i:1651239420;}

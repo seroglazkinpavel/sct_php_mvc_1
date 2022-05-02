@@ -56,7 +56,7 @@
                                placeholder="Повторите пароль"
                         >
                     </div>
-                    <div class="button_box">
+                    <div class="registration button_box">
                         <button type="submit"
                                 name="btn_registration_form"
                                 id="btnRegistrationForm"

@@ -1,5 +1,4 @@
 <div class="page">
-    <div class="container">
         <div class="cabinet_wrapper">
             <div class="cabinet_sidebar">
                 <?php if (!empty($sidebar)) : ?>
@@ -54,7 +53,7 @@
                                                placeholder="Повторите новый пароль"
                                         >
                                     </div>
-                                    <div class="button_box">
+                                    <div class="loginButton button_box">
                                         <button type="submit"
                                                 name="btn_change_password_form"
                                                 id="btnChangePasswordForm"
@@ -69,7 +68,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>   
 </div>
 

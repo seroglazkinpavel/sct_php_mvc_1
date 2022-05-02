@@ -1,7 +1,6 @@
 <div class="page">
-    <div class="container">
         <div class="auth_block">
-            <h1 class="title">Авторизация</h1>
+            <h1 class="titleLogin">Авторизация</h1>
             <form name="auth_form" method="post">
                 <div class="auth_form">
                     <div class="alert alert-danger <? if (empty($error_message)) : ?>hidden<?php endif; ?>">
@@ -45,7 +44,5 @@
                     </div>
                 </div>
             </form>
-
         </div>
-    </div>
 </div>

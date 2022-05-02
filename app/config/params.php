@@ -2,6 +2,6 @@
 
 
 return [
-    'defaultController' => 'user',
-    'defaultAction' => 'login'
+    'defaultController' => 'main',
+    'defaultAction' => 'index'
 ];

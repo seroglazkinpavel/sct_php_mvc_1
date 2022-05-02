@@ -4,10 +4,10 @@
 namespace app\controllers;
 
 use app\core\InitController;
-
 use app\lib\UserOperations;
-
 use app\models\UsersModel;
+use app\models\AdminOrderModels;
+use app\models\CartModels;
 
 
 class UserController extends InitController
@@ -67,7 +67,7 @@ class UserController extends InitController
             } else {
                 $error_message = $result_auth['error_message'];
             }
-        }
+        };
         $this->render('login', [
             'error_message' => $error_message
         ]);
@@ -250,6 +250,41 @@ class UserController extends InitController
             'sidebar' => UserOperations::getMenuLinks(),
             'error_message' => $error_message,
             'user' => $user
+        ]);
+    }
+
+    // Покупки пользователя
+    public function actionPurchase()
+    {
+        $this->view->title = 'Просмотр заказа';
+        //$order_id = !empty($_GET['order_id']) ? $_GET['order_id'] : null;
+        $orders = null;
+        $error_message = '';
+
+        if (!empty($_SESSION['user']['id'])) {
+            $adminOrderModel = new AdminOrderModels();
+            $orders = $adminOrderModel->getPurchaseById($_SESSION['user']['id']);
+
+            if (empty($orders)) {
+                $error_message = 'Заказ не найден!';
+            }
+        } else {
+            $error_message = 'Отсутствует индентификатор записи!';
+        }
+
+
+        $productsQuantity = json_decode($orders['products_in_cart'], true); // Получаем массив идентификаторами и количеством товаров
+
+        $productsIds = array_keys($productsQuantity); // Получаем массив c идентификаторами товаров
+
+        $cartModel = new CartModels();
+        $products = $cartModel->getProductsByIds($productsIds); // Получаем список товаров в заказе
+        //var_dump($products);exit;
+        $this->render('listPurchases', [
+            'sidebar' => UserOperations::getMenuLinks(),
+            'orders' => $orders,
+            'productsQuantity' => $productsQuantity,
+            'products' => $products
         ]);
     }
 }

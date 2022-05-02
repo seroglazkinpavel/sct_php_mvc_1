@@ -52,6 +52,7 @@ abstract class BaseModel
     protected function insert($sql, $params = [])
     {
         $this->query($sql, $params);
+		//print_r($this->db->lastInsertId());exit;
         return (int)$this->db->lastInsertId();
     }
 

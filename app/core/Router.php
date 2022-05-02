@@ -9,22 +9,31 @@ class Router
 {
     protected $params = [];
 
+
     public function match()
     {
         $url = trim($_SERVER['REQUEST_URI'], '/');
         if (!empty($url)) {
             if (strpos($url, '?') !== false) {
-                $link = explode ('?', $url);
+                $link = explode('?', $url);
                 if (!empty($link[0])) {
                     $url = $link[0];
                 }
             }
             $params = explode('/', $url);
+
             if (!empty($params[0]) && !empty($params[1])) {
                 $this->params = [
                     'controller' => $params[0],
                     'action' => $params[1]
                 ];
+                if (!empty($params[0]) && $params[0] === 'category') {
+                    $params[1] = 'index';
+                    $this->params = [
+                        'controller' => 'category',
+                        'action' => 'index'
+                    ];
+                }
             } else {
                 return false;
             }

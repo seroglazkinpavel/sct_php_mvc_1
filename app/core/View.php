@@ -8,7 +8,7 @@ class View
 {
     public $route;
     public $title;
-    public $layout = 'default';
+    public $layout = 'watches';
 
     public function __construct($route)
     {
