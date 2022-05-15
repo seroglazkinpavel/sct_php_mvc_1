@@ -1,3 +1,8 @@
+<?php
+
+/** @var array $category - Категория */
+
+?>
 <?php if (!empty($error_message)): ?>
     <div style="margin: 20px auto;text-align:center;"><h2><?= $error_message; ?></h2></div>
 <?php endif; ?>

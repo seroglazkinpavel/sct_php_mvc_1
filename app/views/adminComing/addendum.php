@@ -1,5 +1,7 @@
 <?php
+
 /** @var string $error_message - Текст ошибки */
+
 ?>
 
 <div class="create_block">

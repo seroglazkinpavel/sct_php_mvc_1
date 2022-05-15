@@ -11,6 +11,11 @@ use app\controllers\CategoryController;
 
 class AdminProductController extends InitController
 {
+    /**
+     * Вывод контроль доступа
+     *
+     * @return array
+     */
     public function behaviors()
     {
         return [
@@ -28,22 +33,31 @@ class AdminProductController extends InitController
         ];
     }
 
-    // Action для страницы "Управления товароми"
+    /**
+     * Вывод страницы "Управления товароми"
+     *
+     * @var array $productsList список товаров
+     */
     public function actionIndex()
     {
         $this->view->title = 'Управления товароми';
 
-        $productsList = ProductController::getProductsList(); // Получаем список товаров
+        $productsList = ProductController::getProductsList();
 
         $this->render('index', [
             'sidebar' => UserOperations::getMenuLinks(),
-            //'role' => UserOperations::getRoleUser(),
+            'role' => UserOperations::getRoleUser(),
             'productsList' => $productsList
 
         ]);
     }
 
-    // Action для страницы "Удалить товар"
+    /**
+     * Вывод страницы удаление товара
+     *
+     * @var integer $product_id id удаляемого товара
+     * @var array $product -товар
+     */
     public function actionDelete()
     {
         $this->view->title = 'Удаление товара';
@@ -84,13 +98,17 @@ class AdminProductController extends InitController
 
     }
 
-    // Action для страницы "Добавления товар"
+    /**
+     * Вывод страницы "Добавления товара"
+     *
+     * @var array $categoriesList - список категорий
+     */
     public function actionCreate()
     {
         $this->view->title = 'Добавление товара';
         $errors = '';
         $result = '';
-        $categoriesList = CategoryController::getCategoriesListAdmin(); // получаем список категорий для выпадающего списка
+        $categoriesList = CategoryController::getCategoriesListAdmin();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['btn_create_form'])) {
             $options['category_id'] = !empty($_POST['category_id']) ? $_POST['category_id'] : null;
@@ -136,6 +154,13 @@ class AdminProductController extends InitController
         ]);
     }
 
+    /**
+     * Вывод страницы редактирование товара
+     *
+     * @var integer $product_id id удаляемого товара
+     * @var array $product -товар
+     * @var array $product_data
+     */
     public function actionEdit()
     {
         $this->view->title = 'Редактирования товара';
@@ -163,7 +188,6 @@ class AdminProductController extends InitController
             if ($product['result']) {
                 $this->redirect('/adminProduct/index');
             }
-
             if (empty($product)) {
                 $error_message = 'Пользователь не найден!';
             }

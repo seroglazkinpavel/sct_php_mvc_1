@@ -12,6 +12,11 @@ use app\models\CartModels;
 
 class UserController extends InitController
 {
+    /**
+     * Вывод контроль доступа
+     *
+     * @return array
+     */
     public function behaviors()
     {
         return [
@@ -52,6 +57,9 @@ class UserController extends InitController
         $this->redirect('/' . $params['defaultController'] . '/' . $params['defaultAction']);
     }
 
+    /**
+     * Вывод страницы авторизации
+     */
     public function actionLogin()
     {
         $this->view->title = 'Авторизация';
@@ -73,6 +81,9 @@ class UserController extends InitController
         ]);
     }
 
+    /**
+     * Вывод страницы регистрации
+     */
     public function actionRegistration()
     {
         $this->view->title = 'Регистрация';
@@ -107,6 +118,10 @@ class UserController extends InitController
         ]);
     }
 
+
+    /**
+     * Вывод страницы "Мой профиль"
+     */
     public function actionProfile()
     {
         $this->view->title = 'Мой профиль';
@@ -131,6 +146,11 @@ class UserController extends InitController
         ]);
     }
 
+    /**
+     * Вывод страницы "Пользователи"
+     *
+     *  @var array $users - список пользователей
+     */
     public function actionUsers()
     {
         $this->view->title = 'Пользователи';
@@ -145,6 +165,9 @@ class UserController extends InitController
         ]);
     }
 
+    /**
+     * Вывод страницы "Добавление пользователя"
+     */
     public function actionAdd()
     {
         $this->view->title = 'Добавление пользователя';
@@ -182,6 +205,12 @@ class UserController extends InitController
         ]);
     }
 
+    /**
+     * Вывод страницы "Редактирования пользователя"
+     *
+     * @var integer $user_id - id выбранного пользователя
+     * @var array $user - данные о пользователе
+     */
     public function actionEdit()
     {
         $this->view->title = 'Редактирования пользователя';
@@ -221,6 +250,12 @@ class UserController extends InitController
         ]);
     }
 
+    /**
+     * Вывод страницы "Удаление пользователя"
+     *
+     * @var integer $user_id - id выбранного пользователя
+     * @var array $user - данные о пользователе
+     */
     public function actionDelete()
     {
         $this->view->title = 'Удаление пользователя';
@@ -253,7 +288,14 @@ class UserController extends InitController
         ]);
     }
 
-    // Покупки пользователя
+    /**
+     * Вывод страницы 'Просмотр заказа' покупки пользователя
+     *
+     * @var array $orders - заказы пользователя
+     * @var array $productsQuantity - массив с идентификаторами и количеством товаров
+     * @var array $productsIds - массив c идентификаторами товаров
+     * @var array $products - список товаров в заказе
+     */
     public function actionPurchase()
     {
         $this->view->title = 'Просмотр заказа';
@@ -272,14 +314,12 @@ class UserController extends InitController
             $error_message = 'Отсутствует индентификатор записи!';
         }
 
+        $productsQuantity = json_decode($orders['products_in_cart'], true);
 
-        $productsQuantity = json_decode($orders['products_in_cart'], true); // Получаем массив идентификаторами и количеством товаров
-
-        $productsIds = array_keys($productsQuantity); // Получаем массив c идентификаторами товаров
-
+        $productsIds = array_keys($productsQuantity);
         $cartModel = new CartModels();
-        $products = $cartModel->getProductsByIds($productsIds); // Получаем список товаров в заказе
-        //var_dump($products);exit;
+        $products = $cartModel->getProductsByIds($productsIds);
+
         $this->render('listPurchases', [
             'sidebar' => UserOperations::getMenuLinks(),
             'orders' => $orders,

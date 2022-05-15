@@ -1,3 +1,8 @@
+<?php
+
+/** @var array $coming -товар  */
+
+?>
 <div class="userPanel">
     <div class="cabinet_sidebar">
         <?php if (!empty($sidebar)) : ?>

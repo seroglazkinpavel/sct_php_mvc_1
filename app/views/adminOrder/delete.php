@@ -1,3 +1,8 @@
+<?php
+
+/** @var array $order - Заказ */
+
+?>
 <div class="userPanel">
     <div class="cabinet_sidebar">
         <?php if (!empty($sidebar)) : ?>

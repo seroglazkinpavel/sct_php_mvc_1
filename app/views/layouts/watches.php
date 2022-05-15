@@ -1,5 +1,6 @@
 <?php
 use app\lib\UserOperations;
+/** @var array $content */
 ?>
 
 <!DOCTYPE html>

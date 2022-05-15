@@ -7,8 +7,13 @@ use app\lib\UserOperations;
 use app\controllers\ProductController;
 use app\models\AdminComingModels;
 
-class adminComingController extends InitController
+class AdminComingController extends InitController
 {
+    /**
+     * Вывод контроль доступа
+     *
+     * @return array
+     */
     public function behaviors()
     {
         return [
@@ -26,27 +31,32 @@ class adminComingController extends InitController
         ];
     }
 
+    /**
+     * Вывод страницы прихода товаров
+     *
+     * @var $comings array список товаров
+     */
     public function actionIndex()
     {
         $this->view->title = 'Приход товара';
-        $productsList = ProductController::getProductsList(); // Получаем список товаров
 
         $adminComingModel = new AdminComingModels();
         $comings = $adminComingModel->getComing();
-        //var_dump($coming);exit;
+
         $this->render('index', [
             'sidebar' => UserOperations::getMenuLinks(),
             'comings' => $comings
         ]);
     }
 
-    // Добавление нового товара
+    /**
+     * Вывод страницы добавление нового товаро
+     */
     public function actionAddendum()
     {
         $this->view->title = 'Добавление нового товара';
 
         $errors = '';
-        $result = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['btn_addendum_form'])) {
             $options['title'] = !empty($_POST['title']) ? $_POST['title'] : null;
@@ -66,12 +76,15 @@ class adminComingController extends InitController
         $this->render('addendum', [
             'sidebar' => UserOperations::getMenuLinks(),
             'errors' => $errors,
-            //'result' => $result,
-
         ]);
     }
 
-    // Action для страницы "Удалить товар"
+    /**
+     * Вывод страницы удаление товара
+     *
+     * @var integer $coming_id id удаляемого товара
+     * @var array $coming -товар
+     */
     public function actionDelete()
     {
         $this->view->title = 'Удаление товара';
@@ -108,12 +121,17 @@ class adminComingController extends InitController
             'error_message' => $error_message,
             'coming' => $coming
         ]);
-
     }
 
+    /**
+     * Вывод страницы редактирование товара
+     *
+     * @var integer $coming_id id удаляемого товара
+     * @var array $coming -товар
+     */
     public function actionEdit()
     {
-        $this->view->title = 'Редактирования пользователя';
+        $this->view->title = 'Редактирования товара';
         $coming_id = !empty($_GET['coming_id']) ? $_GET['coming_id'] : null;
         $coming = null;
         $error_message = '';
@@ -134,10 +152,10 @@ class adminComingController extends InitController
 
         if (!empty($coming_id)) {
             $comingModel = new AdminComingModels();
-            $coming = $comingModel->getComingById($coming_id);
+            $coming = $comingModel->getProductById($coming_id);
 
             if (empty($coming)) {
-                $error_message = 'Пользователь не найден!';
+                $error_message = 'Товар не найден!';
             }
         } else {
             $error_message = 'Отсутствует идентификатор записи!';

@@ -7,7 +7,11 @@ use app\core\BaseModel;
 
 class MainsModels extends BaseModel
 {
-    // Метод по выводу брендов
+    /**
+     * Вывод брендов
+     *
+     * @return array $result
+     */
     public function getListBrands()
     {
         $result = null;
@@ -18,7 +22,11 @@ class MainsModels extends BaseModel
         return $result;
     }
 
-    // Метод по выводу новинок
+    /**
+     * Вывод новинок
+     *
+     * @return array $result
+     */
     public function getListHits()
     {
         $result = null;

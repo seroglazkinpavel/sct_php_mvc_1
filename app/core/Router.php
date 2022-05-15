@@ -9,7 +9,13 @@ class Router
 {
     protected $params = [];
 
-
+    /**
+     * Сопостовление контроллера и экшена в адресной строке
+     *
+     * @var string $url - адресная строка
+     * @var array $params - ['controller', 'action'] или [] по умолчанию
+     * @return bool
+     */
     public function match()
     {
         $url = trim($_SERVER['REQUEST_URI'], '/');
@@ -47,6 +53,12 @@ class Router
         return true;
     }
 
+    /**
+     * Проверяе имеет ли доступ экшен
+     *
+     * @param array $behaviors - правило доступа
+     * @return bool
+     */
     public function checkBehaviors($behaviors)
     {
         if (empty($behaviors['access']['rules'])) {
@@ -69,8 +81,13 @@ class Router
         return true;
     }
 
-    // Метод который будет запускать class Router
-
+    /**
+     * Метод который будет запускать class Router
+     *
+     * @var string $path_controller - путь для контроллера
+     * @var string $action - название метода  данного контроллера
+     * @var array $behaviors - правило доступа
+     */
     public function run()
     {
         if ($this->match()) {

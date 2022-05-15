@@ -1,4 +1,11 @@
-﻿<div class="order">
+﻿<?php
+
+/** @var array $orders - Заказы */
+/** @var array $products - Продукты */
+/**@var array $productsQuantity */
+
+?>
+<div class="order">
     <div class="cabinet_sidebar">
         <?php if (!empty($sidebar)) : ?>
             <div class="menu_box">
@@ -32,6 +39,8 @@
                 <td><?= $orders['user_email']; ?></td>
                 <?php if (!empty($orders['user_id'])): ?>
                     <td><?= $orders['user_id']; ?></td>
+                <?php else : ?>
+                    <td><?php echo '---'; ?></td>
                 <?php endif; ?>
                 <td><?= $orders['date']; ?></td>
                 <!--<td></td>-->

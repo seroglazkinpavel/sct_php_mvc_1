@@ -7,6 +7,14 @@ use app\core\BaseModel;
 
 class UsersModel extends BaseModel
 {
+    /**
+     * Добавление пользователя
+     *
+     * @param string $username - имя
+     * @param string $login - логин
+     * @param string $password - пароль
+     * @var array $result
+     */
     public function addUser($username, $login, $password)
     {
         $result = false;
@@ -31,6 +39,14 @@ class UsersModel extends BaseModel
         ];
     }
 
+    /**
+     * Регистрация пользователя
+     *
+     * @param string $username - имя
+     * @param string $login - логин
+     * @param string $password - пароль
+     * @return integer $user_id
+     */
     public function addNewUser($username, $login, $password)
     {
         $password = password_hash($password, PASSWORD_DEFAULT);
@@ -45,6 +61,13 @@ class UsersModel extends BaseModel
         return $user_id;
     }
 
+    /**
+     * Авторизация пользователя
+     *
+     * @param string $login - логин
+     * @param string $password - пароль
+     * @return array
+     */
     public function authByLogin($login, $password)
     {
         $result = false;
@@ -86,6 +109,14 @@ class UsersModel extends BaseModel
         ];
     }
 
+    /**
+     * Замена пароля
+     *
+     * @param string $current_password - текущий пароль
+     * @param string $new_password - новый пароль
+     * @param string $confirm_new_password - подтверждение пароль
+     * @return array
+     */
     public function changePasswordByCurrentPassword($current_password, $new_password, $confirm_new_password)
     {
         $result = false;
@@ -133,6 +164,13 @@ class UsersModel extends BaseModel
         ];
     }
 
+    /**
+     * Редактирования пользователя
+     *
+     * @param integer $user_id - id пользователя
+     * @param array $user_data - ввод данных пользователем
+     * @return array
+     */
     public function edit($user_id, $user_data)
     {
         $result = false;
@@ -168,6 +206,12 @@ class UsersModel extends BaseModel
         ];
     }
 
+    /**
+     * Удаление пользователя
+     *
+     * @aram integer $user_id - id выбранного пользователя
+     * @return array
+     */
     public function deleteById($user_id)
     {
         $result = false;
@@ -195,8 +239,11 @@ class UsersModel extends BaseModel
         ];
     }
 
-    // Метод по выводу всех пользователей
-
+    /**
+     * Метод по выводу всех пользователей
+     *
+     * @return array $result
+     */
     public function getListUsers()
     {
         $result = null;
@@ -208,6 +255,12 @@ class UsersModel extends BaseModel
         return $result;
     }
 
+    /**
+     * Выбор пользователя по id
+     *
+     * @aram integer $user_id - id выбранного пользователя
+     * @return array $result
+     */
     public function getUserById($user_id)
     {
         $result = null;
