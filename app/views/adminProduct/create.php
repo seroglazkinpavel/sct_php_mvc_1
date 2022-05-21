@@ -17,7 +17,7 @@
                 <select name="category_id">
                     <?php if (!empty($categoriesList)): ?>
                         <?php foreach ($categoriesList as $category): ?>
-                            <option value="<?= $category['id']; ?>">
+                            <option value="<?= $category['category_id']; ?>">
                                 <?= $category['title']; ?>
                             </option>
                         <?php endforeach; ?>

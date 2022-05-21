@@ -10,6 +10,11 @@ abstract class BaseModel
 {
     protected $db;
 
+    /**
+     * Соединение с базой данных с использованием PDO
+     *
+     * @var array $config - массив конфигурационными настройками
+     */
     public function __construct()
     {
         $config = require 'app\config\db.php';
@@ -25,6 +30,13 @@ abstract class BaseModel
         }
     }
 
+    /**
+     * Общий метод для запросов в базу данных
+     *
+     * @param string $sql — запрос
+     * @param array $params данные из бд
+     * @return array $query
+     */
     protected function query($sql, $params = [])
     {
         $query = $this->db->prepare($sql);
@@ -37,31 +49,65 @@ abstract class BaseModel
         return $query;
     }
 
+    /**
+     * Метод для выборки одной записи из бд
+     *
+     * @param string $sql — запрос
+     * @param array $params данные из бд
+     * @return array $result
+     */
     protected function selectOne($sql, $params = [])
     {
         $result = $this->query($sql, $params);
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Метод для выборки данных из бд
+     *
+     * @param string $sql — запрос
+     * @param array $params данные из бд
+     * @return array $result
+     */
     protected function select($sql, $params = [])
     {
         $result = $this->query($sql, $params);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Метод для вставки данных в бд
+     *
+     * @param string $sql — запрос
+     * @param array $params данные из бд
+     * @return (int)$this->db->lastInsertId()
+     */
     protected function insert($sql, $params = [])
     {
         $this->query($sql, $params);
-		//print_r($this->db->lastInsertId());exit;
         return (int)$this->db->lastInsertId();
     }
 
+    /**
+     * Метод для обнавлении записи
+     *
+     * @param string $sql — запрос
+     * @param array $params данные из бд
+     * @return $query->rowCount() - количество измененных записей
+     */
     protected function update($sql, $params = [])
     {
         $query = $this->query($sql, $params);
         return $query->rowCount();
     }
 
+    /**
+     * Метод для удаление записи
+     *
+     * @param string $sql — запрос
+     * @param array $params данные из бд
+     * @return $query->rowCount() - количество измененных записей
+     */
     protected function delete($sql, $params = [])
     {
         $query = $this->query($sql, $params);

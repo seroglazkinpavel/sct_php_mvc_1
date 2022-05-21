@@ -1,5 +1,9 @@
 <?php
 
+/** @var array $productsInCart - Даные из карзины */
+/** @var array $products - Товары */
+/** @var float $totalPrice - Общая стримость */
+
 ?>
 <div class="karzina">
     <h2 class="cartTitle">Корзина</h2>

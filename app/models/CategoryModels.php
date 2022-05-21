@@ -6,21 +6,11 @@ use app\core\BaseModel;
 
 class CategoryModels extends BaseModel
 {
-    /*public function getOneProduct($alias)
-    {
-        $result = null;
-        $product = $this->select(
-        "SELECT * FROM `product` WHERE `alias`=:alias",
-            [
-                'alias' => $alias
-            ]
-        );
-        if (!empty($product)) {
-            $result = $product;
-        }
-        return $result;
-    }*/
-
+    /**
+     * Выборка всех категорий
+     *
+     * @return array $result
+     */
     public function getCategoryAll()
     {
         $result = false;
@@ -31,7 +21,13 @@ class CategoryModels extends BaseModel
         return $result;
     }
 
-    // Метод по выводу продуктов категорий
+    /**
+     * Выводу продуктов категорий
+     *
+     * @param string $alias
+     * @param integer $category_id
+     * @return array $result
+     */
     public function getListProducts($alias)
     {
         $result = null;
@@ -56,6 +52,12 @@ class CategoryModels extends BaseModel
         return $result;
     }
 
+    /**
+     * Выбор название категории
+     *
+     * @param string $alias
+     * @return array $result
+     */
     public function getTitleCategory($alias)
     {
         $result = null;

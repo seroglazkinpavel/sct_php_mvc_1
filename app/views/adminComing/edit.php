@@ -1,7 +1,7 @@
 <?php
 
-/** @var array $sidebar -Меню */
-/** @var array $news - Новость */
+/** @var array $sidebar - Меню */
+/** @var array $coming - Товар */
 
 ?>
 

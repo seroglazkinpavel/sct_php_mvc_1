@@ -10,6 +10,11 @@ class UserOperations
     const RoleAdmin = 'admin';
     const RoleUser = 'user';
 
+    /**
+     * Выдает роль пользователя
+     *
+     * @return  string $result - роль пользователя
+     */
     public static function getRoleUser()
     {
         $result = self::RoleGuest;
@@ -21,7 +26,11 @@ class UserOperations
         return $result;
     }
 
-    // Создает ссылки для меню в виде массива
+    /**
+     * Создает ссылки для меню в виде массива
+     *
+     * @return array $list
+     */
     public static function getMenuLinks()
     {
         $role = self::getRoleUser();
@@ -73,44 +82,69 @@ class UserOperations
 
         return $list;
     }
-	
+
+    /**
+     * Добавление товара в карзину
+     *
+     * @param integer $id — id текущего товара
+     * @var  array $productsInCart[] - Пустой массив для товаров в карзине по умолчанию
+     */
 	public static function addProduct($id)
 	{
 		$id = intval($id);
 				
-		$productsInCart = array(); // Пустой массив для товаров в карзине
+		$productsInCart = array();
 		
-		// Если в корзине уже есть товары (они хранятся в сессии)
+		/*
+		 * Если в корзине уже есть товары (они хранятся в сессии)
+		 */
 		if (isset($_SESSION['products'])) {			
 			$productsInCart = $_SESSION['products']; // То заполним наш массив товароми
 		}
 		
-		// Если товар есть в карзине, но был добавлен еще раз, увеличим количество
+		/*
+		 * Если товар есть в карзине, но был добавлен еще раз, увеличим количество
+		 */
 		if (array_key_exists($id, $productsInCart)) {
 			$productsInCart[$id] ++;
 		} else {
-			
-			$productsInCart[$id] =1; // Добавляем новый товар в корзину
+			/*
+			 * Добавляем новый товар в корзину
+			 */
+			$productsInCart[$id] = 1;
 		}
 		
 		$_SESSION['products'] = $productsInCart;
 		
 	}
-	
-	// Удаляем товар с указанным id из карзины
+
+    /**
+     * Удаляем товар с указанным id из карзины
+     *
+     * @param integer $id — id текущего товара
+     * var array $productsInCart - массив с идентификатором и количеством товаров в карзине
+     */
 	public static function deleteProduct($id)
 	{
 		$id = intval($id);
 			
-		$productsInCart = self::getProducts(); // Получаем массив с идентификатором и количеством товаров в карзине
-		
-		unset ($productsInCart["$id"]); // Удаляем из массива элемент с указанным id
-
-		$_SESSION['products'] = $productsInCart; // Записываем массив товаров с удаленным элементом в сессии
+		$productsInCart = self::getProducts();
+		/*
+		 * Удаляем из массива элемент с указанным id
+		 */
+		unset ($productsInCart["$id"]);
+        /*
+         * Записываем массив товаров с удаленным элементом в сессии
+         */
+		$_SESSION['products'] = $productsInCart;
 		
 	}
-	
-	// Получение массива продуктов
+
+    /**
+     * Получение массива продуктов
+     *
+     * @return array
+     */
 	public static function getProducts()
 	{
 		if (isset($_SESSION['products'])) {
@@ -118,8 +152,12 @@ class UserOperations
 		} 
 		return false;
 	}
-	
-	// Подсчет количество товаров в корзине (в сессии)
+
+    /**
+     * Подсчет количество товаров в корзине (в сессии)
+     *
+     * @return integer $count - количество товара в корзине
+     */
 	public static function countItems()
 	{
 		if (isset($_SESSION['products'])) {
@@ -132,8 +170,10 @@ class UserOperations
 			return 0;
 		}
 	}
-	
-	// Очищаем карзину
+
+    /**
+     * Очищаем карзину
+     */
 	public static function clear()
 	{
 		if (isset($_SESSION['products'])) {

@@ -11,6 +11,11 @@ use app\models\CategoryModels;
 class CategoryController extends InitController
 
 {
+    /**
+     * Вывод контроль доступа
+     *
+     * @return array
+     */
     public function behaviors()
     {
         return [
@@ -28,6 +33,11 @@ class CategoryController extends InitController
         ];
     }
 
+    /**
+     * Получить список категорий
+     *
+     * @return array $categoryList
+     */
     public static function getCategoriesListAdmin()
     {
         $categoryModel = new CategoryModels();
@@ -35,6 +45,12 @@ class CategoryController extends InitController
         return $categoryList;
     }
 
+    /**
+     * Вывод страницы 'Категория товара'
+     *
+     * @var string $alias
+     * @var array $category - Категория
+     */
     public function actionIndex()
     {
         $this->view->title = 'Категория товара';
@@ -66,30 +82,4 @@ class CategoryController extends InitController
             'category' => $category,
         ]);
     }
-
-    /*public function actionList()
-    {
-        $this->view->title = 'Карточка товара';
-
-        $url = trim($_SERVER['REQUEST_URI'], '/');
-        $params = explode('/', $url);
-        $alias = $params[1];
-        $product = null;
-        $error_message = '';
-
-        if (!empty($alias)) {
-            $productModel = new CategorytModels();
-            $product = $productModel->getOneProduct($alias);
-            if (empty($product)) {
-                $error_message = 'Продукт не найден!';
-            }
-        } else {
-            $error_message = 'Отсутствует индентификатор записи!';
-        }
-
-        $this->render('list', [
-            'sidebar' => UserOperations::getMenuLinks(),
-            'product' => $product
-        ]);
-    }*/
 }

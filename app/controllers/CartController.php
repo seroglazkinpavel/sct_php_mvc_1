@@ -9,6 +9,11 @@ use app\models\CartModels;
 
 class CartController extends InitController
 {
+    /**
+     * Вывод контроль доступа
+     *
+     * @return array
+     */
     public function behaviors()
     {
         return [
@@ -26,13 +31,21 @@ class CartController extends InitController
         ];
     }
 
+
+    /**
+     * Вывод страницы карзины
+     *
+     * @var array $productsInCart - получение данных из корзины
+     * @var array $products - получаем полную информацию о товарах для списка
+     * @var float $totalPrice - Получаем общую стоимость товаров
+     */
     public function actionCart()
     {
         $this->view->title = 'Корзина';
 
         $productsInCart = UserOperations::getProducts();
         $products = $this->actionCartProducts();
-        $totalPrice = $this->getTotalPrice($products); // Получаем общую стоимость товаров
+        $totalPrice = $this->getTotalPrice($products);
 
         $this->render('cart', [
             'sidebar' => UserOperations::getMenuLinks(),
@@ -42,6 +55,11 @@ class CartController extends InitController
         ]);
     }
 
+    /**
+     * Добавляем товар в корзину
+     *
+     * @var int $id
+     */
     public function actionAdd()
     {
         $id = !empty($_GET['id']) ? $_GET['id'] : null;
@@ -52,7 +70,11 @@ class CartController extends InitController
         header("Location: $referrer");
 
     }
-
+    /**
+     * Удаление товара из карзины
+     *
+     * @var int $id
+     */
     public function actionDelete()
     {
         $id = !empty($_GET['id']) ? $_GET['id'] : null;
@@ -63,6 +85,9 @@ class CartController extends InitController
         header("Location: $referrer");
     }
 
+    /**
+     * Вывод страницы оформление заказа
+     */
     public function actionCheckout()
     {
         $this->view->title = 'Оформить заказ';
@@ -74,8 +99,6 @@ class CartController extends InitController
             $userName = !empty($_POST['userName']) ? $_POST['userName'] : null;
             $userPhone = !empty($_POST['userPhone']) ? $_POST['userPhone'] : null;
             $userEmail = !empty($_POST['userEmail']) ? $_POST['userEmail'] : null;
-
-            // Валидация полей
 
             if (empty($userName)) {
                 $errors = 'Введите Ваше имя!';
@@ -111,10 +134,8 @@ class CartController extends InitController
                     $message = 'http://digital-mafia.net/admin/orders';
                     $subject = 'Новый заказ';
                     mail($adminEmail, $message, $subject);
-
                     // Очищаем карзину
                     UserOperations::clear();
-
                 }
             } else {
                 // Итоги: общая стоимость, количество товаров
@@ -155,10 +176,7 @@ class CartController extends InitController
                 //$userName = $user['name'];
                 //}
             }
-
         }
-
-
         $this->render('checkout', [
             'sidebar' => UserOperations::getMenuLinks(),
             'result' => $result,
@@ -168,21 +186,33 @@ class CartController extends InitController
         ]);
     }
 
-    // Получение: товаров из корзины(из сессии); полной информации по товарам
+    /**
+     * Получение: товаров из корзины(из сессии); полной информации по товарам
+     *
+     * @var array $productsInCart - получение данных из корзины
+     * @var array $productsIds - получаем массив с идентификаторами в карзине
+     * @return array $products - получаем полную информацию о товарах для списка
+     */
     public function actionCartProducts()
     {
         $products = '';
-        $productsInCart = false;
-        $productsInCart = UserOperations::getProducts(); // Получение данных из корзины
+        //$productsInCart = false;
+        $productsInCart = UserOperations::getProducts();
 
         if ($productsInCart) {
-            $productsIds = array_keys($productsInCart);  // получаем массив с идентификаторами в карзине
+            $productsIds = array_keys($productsInCart);
             $cartModel = new CartModels();
-            $products = $cartModel->getProductsByIds($productsIds); // Получаем полную информацию о товарах для списка
+            $products = $cartModel->getProductsByIds($productsIds);
         }
         return $products;
     }
 
+    /**
+     * Получение полной цены
+     *
+     * @var array $productsInCart - получение данных из корзины
+     * @return float $total
+     */
     public function getTotalPrice($products)
     {
         $productsInCart = UserOperations::getProducts();

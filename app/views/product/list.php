@@ -1,3 +1,8 @@
+<?php
+
+/** @var array $product - Продукт */
+
+?>
 <section class="product_card">
 
     <div class="card">

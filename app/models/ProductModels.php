@@ -7,7 +7,12 @@ use app\core\BaseModel;
 
 class ProductModels extends BaseModel
 {
-
+    /**
+     * Выборка продукта
+     *
+     * @var string $alias - алиас
+     * @return array $result
+     */
     public function getOneProduct()
     {
         $alias = !empty($_GET['alias']) ? $_GET['alias'] : null;
@@ -24,6 +29,11 @@ class ProductModels extends BaseModel
         return $result;
     }
 
+    /**
+     * Выборка всех продуктав по возрастанию
+     *
+     * @return array $result
+     */
     public function getProductsListAll()
     {
         $result = null;
@@ -35,6 +45,12 @@ class ProductModels extends BaseModel
         return $result;
     }
 
+    /**
+     * Удаление товара
+     *
+     * @var integer $product_id id удаляемого товара
+     * @return array
+     */
     public function deleteById($product_id)
     {
         $result = false;
@@ -62,6 +78,13 @@ class ProductModels extends BaseModel
         ];
     }
 
+    /**
+     * Редактирование продукта
+     *
+     * @param integer $product_id - id продукта
+     * @param array $product_data - продукт
+     * @return array
+     */
     public function edit($product_id, $product_data)
     {
         $result = false;
@@ -87,15 +110,19 @@ class ProductModels extends BaseModel
                 ]
             );
             $result = $product_id;
-
         }
-
         return [
             'result' => $result,
             'error_message' => $error_message
         ];
     }
 
+    /**
+     * Выборка продукта по id
+     *
+     * @param integer $product_id - id продукта
+     * @return array $result
+     */
     public function getProductById($product_id)
     {
         $result = null;
@@ -111,6 +138,12 @@ class ProductModels extends BaseModel
         return $result;
     }
 
+    /**
+     * Добавления товара
+     *
+     * @param array $options - товар
+     * @return array
+     */
     public function getProductCreate($options)
     {
         $result = false;

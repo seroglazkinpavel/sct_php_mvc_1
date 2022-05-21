@@ -6,6 +6,11 @@ use app\core\BaseModel;
 
 class AdminComingModels extends BaseModel
 {
+    /**
+     * Приход товаров
+     *
+     * @return array $result
+     */
 	public function getComing()
 	{
 		$result = false;
@@ -15,7 +20,13 @@ class AdminComingModels extends BaseModel
 		}
 		return $result;
 	}
-	
+
+    /**
+     * Добавление нового товаро
+     *
+     * @param array $options
+     * @return array
+     */
 	public function getProductAddendum($options)
 	{
 		$result = false;
@@ -46,7 +57,13 @@ class AdminComingModels extends BaseModel
             'errors' => $errors
         ];
 	}
-	
+
+    /**
+     * Удаление товаро
+     *
+     * @param integer $coming_id - id товара
+     * @return array
+     */
 	public function deleteById($coming_id)
     {
         $result = false;
@@ -73,7 +90,13 @@ class AdminComingModels extends BaseModel
             'error_message' => $error_message
         ];
     }
-	
+
+    /**
+     * Выбор товара по id
+     *
+     * @param integer $coming_id - id товара
+     * @return array $result
+     */
 	public function getProductById($coming_id)
     {
         $result = null;
@@ -88,7 +111,14 @@ class AdminComingModels extends BaseModel
         }
 		return $result;
     }
-	
+
+    /**
+     * Редактирование товара
+     *
+     * @param integer $coming_id - id товара
+     * @param array $coming_data
+     * @return array
+     */
 	public function edit($coming_id, $coming_data)
     {
         $result = false;
@@ -118,7 +148,7 @@ class AdminComingModels extends BaseModel
         ];
     }
 	
-	public function getComingById($coming_id)
+	/*public function getComingById($coming_id)
     {
         $result = null;
 
@@ -133,5 +163,5 @@ class AdminComingModels extends BaseModel
             $result = $coming[0];
         }
         return $result;
-    }
+    }*/
 }

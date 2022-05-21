@@ -8,7 +8,11 @@ use app\models\ProductModels;
 
 class ProductController extends InitController
 {
-
+    /**
+     * Вывод 'Карточка товара'
+     *
+     * @var array $product
+     */
     public function actionList()
     {
         $this->view->title = 'Карточка товара';
@@ -22,17 +26,15 @@ class ProductController extends InitController
         ]);
     }
 
+    /**
+     * Вывод списка продуктов
+     *
+     * @return array $productsList
+     */
     public static function getProductsList()
     {
         $productModel = new ProductModels();
         $productsList = $productModel->getProductsListAll();
         return $productsList;
     }
-
-    /*public static function createProduct($options)
-    {		
-        $productModel = new ProductModels();
-        $id = $productModel->getProductCreate($options);
-        return $id;
-    }*/
 }

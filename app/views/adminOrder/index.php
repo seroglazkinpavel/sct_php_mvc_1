@@ -1,3 +1,8 @@
+<?php
+
+/** @var array $orders - Заазы */
+
+?>
 <div class="order">
     <div class="cabinet_sidebar">
         <?php if (!empty($sidebar)) : ?>

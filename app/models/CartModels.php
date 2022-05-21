@@ -6,7 +6,12 @@ use app\core\BaseModel;
 
 class CartModels extends BaseModel
 {
-    // Получаем полную информацию о товарах для списка
+    /**
+     * Получаем полную информацию о товарах для списка
+     *
+     * @param array $productsIds
+     * @return array $result
+     */
     public function getProductsByIds($productsIds)
     {
         $products = array();
@@ -18,7 +23,16 @@ class CartModels extends BaseModel
         return $result;
     }
 
-    // Сохраняем заказ БД
+    /**
+     * Сохраняем заказ БД
+     *
+     * @param string $userName
+     * @param string $userPhone
+     * @param string $userEmail
+     * @param string $userId
+     * @param array $productsInCart
+     * @return array $result
+     */
     public function save($userName, $userPhone, $userEmail, $userId, $productsInCart)
     {
         $result = false;

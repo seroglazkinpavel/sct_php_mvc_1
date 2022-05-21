@@ -6,6 +6,11 @@ use app\core\BaseModel;
 
 class AdminOrderModels extends BaseModel
 {
+    /**
+     * Управление заказами
+     *
+     * @return array $result
+     */
     public function getOrder()
     {
         $result = false;
@@ -16,6 +21,12 @@ class AdminOrderModels extends BaseModel
         return $result;
     }
 
+    /**
+     * Удаление заказа
+     *
+     * @param integer $order_id - id заказа
+     * @return array
+     */
     public function deleteById($order_id)
     {
         $result = false;
@@ -43,6 +54,12 @@ class AdminOrderModels extends BaseModel
         ];
     }
 
+    /**
+     * Выбор заказа по id
+     *
+     * @param integer $order_id - id товара
+     * @return array $result
+     */
     public function getOrderById($order_id)
     {
         $result = null;
@@ -58,6 +75,12 @@ class AdminOrderModels extends BaseModel
         return $result;
     }
 
+    /**
+     * Информация о заказе
+     *
+     * @param integer $order_id - id пользователя заказа
+     * @return array $result
+     */
     public function getPurchaseById($order_id)
     {
         $result = null;
@@ -73,13 +96,13 @@ class AdminOrderModels extends BaseModel
         return $result;
     }
 
-    public function edit($coming_id, $coming_data)
+   /* public function edit($coming_id, $coming_data)
     {
         $result = false;
         $error_message = '';
 
         if (empty($coming_id)) {
-            $error_message = 'ќтсутствует идентификатор пользовател¤!';
+            $error_message = 'отсутствует идентификатор пользовател¤!';
         } elseif (empty($coming_data['count'])) {
             $error_message = '¬ведите количество товаров!';
         }
@@ -100,5 +123,5 @@ class AdminOrderModels extends BaseModel
             'result' => $result,
             'error_message' => $error_message
         ];
-    }
+    }*/
 }

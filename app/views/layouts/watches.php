@@ -1,5 +1,6 @@
 <?php
 use app\lib\UserOperations;
+/** @var array $content */
 ?>
 
 <!DOCTYPE html>
@@ -36,8 +37,12 @@ use app\lib\UserOperations;
             </div>
 			
             <div class="header_section">
-                <div class="header_item headerButton images"><a href="#"><img src="/app/web/images/entrance.png"></a></div>
-                <div class="header_item headerButton"><a href="/user/login">Вход\</a><a href="/user/registration">регистрация</a></div>
+                <div class="header_item headerButton images"><img src="/app/web/images/entrance.png"></div>
+                
+				<?php if (empty($_SESSION['user'])) :?>
+					<div class="header_item headerButton"><a href="/user/login">Вход\</a><a href="/user/registration">регистрация</a></div>
+					<?php else : ?><span style="margin-left:10px;"><a href="/user/profile"><b>Привет <?=$_SESSION['user']['login'];?>!</b></a></span>
+				<?php endif; ?>
             </div>
         </div>
         <div class="header_logo">

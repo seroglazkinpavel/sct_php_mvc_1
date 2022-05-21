@@ -9,6 +9,11 @@ use app\models\CartModels;
 
 class AdminOrderController extends InitController
 {
+    /**
+     * Вывод контроль доступа
+     *
+     * @return array
+     */
     public function behaviors()
     {
         return [
@@ -26,20 +31,33 @@ class AdminOrderController extends InitController
         ];
     }
 
+    /**
+     * Вывод страницы 'Управление заказами'
+     *
+     * @var array $orders -  заказы
+     */
     public function actionIndex()
     {
         $this->view->title = 'Управление заказами';
 
         $adminOrderModel = new AdminOrderModels();
         $orders = $adminOrderModel->getOrder();
-        //var_dump($coming);exit;
+
         $this->render('index', [
             'sidebar' => UserOperations::getMenuLinks(),
             'orders' => $orders
         ]);
     }
 
-    // Просмотр заказа
+    /**
+     * Просмотр заказа
+     *
+     * @var integer $order_id - id заказа
+     * @var array $orders - заказы
+     * @var array $productsQuantity - массив с идентификаторами и количеством товаров
+     * @var array $productsIds - массив c идентификаторами товаров
+     * @var array $products - список товаров в заказе
+     */
     public function actionBooking()
     {
         $this->view->title = 'Просмотр заказа';
@@ -58,13 +76,13 @@ class AdminOrderController extends InitController
         }
 
 
-        $productsQuantity = json_decode($orders['products_in_cart'], true); // Получаем массив идентификаторами и количеством товаров
+        $productsQuantity = json_decode($orders['products_in_cart'], true);
 
-        $productsIds = array_keys($productsQuantity); // Получаем массив c идентификаторами товаров
+        $productsIds = array_keys($productsQuantity);
 
         $cartModel = new CartModels();
-        $products = $cartModel->getProductsByIds($productsIds); // Получаем список товаров в заказе
-        //var_dump($products);exit;
+        $products = $cartModel->getProductsByIds($productsIds);
+
         $this->render('booking', [
             'sidebar' => UserOperations::getMenuLinks(),
             'orders' => $orders,
@@ -74,6 +92,13 @@ class AdminOrderController extends InitController
     }
 
     // Action для страницы "Удаление заказа"
+
+    /**
+     * Удаление заказа
+     *
+     * @var integer $order_id - id заказа
+     * @var array $order - заказ
+     */
     public function actionDelete()
     {
         $this->view->title = 'Удаление заказа';
@@ -111,45 +136,6 @@ class AdminOrderController extends InitController
             'sidebar' => UserOperations::getMenuLinks(),
             'error_message' => $error_message,
             'order' => $order
-        ]);
-    }
-
-    public function actionEdit()
-    {
-        $this->view->title = 'Редактирования пользователя';
-        $coming_id = !empty($_GET['coming_id']) ? $_GET['coming_id'] : null;
-        $coming = null;
-        $error_message = '';
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['btn_coming_edit_form'])) {
-            $coming_data = !empty($_POST['coming']) ? $_POST['coming'] : null;
-
-            if (!empty($coming_data)) {
-                $comingModel = new AdminComingModels();
-                $result_edit = $comingModel->edit($coming_id, $coming_data);
-                if ($result_edit['result']) {
-                    $this->redirect('/adminComing/index');
-                } else {
-                    $error_message = $result_edit['error_message'];
-                }
-            }
-        }
-
-        if (!empty($coming_id)) {
-            $comingModel = new AdminComingModels();
-            $coming = $comingModel->getComingById($coming_id);
-
-            if (empty($coming)) {
-                $error_message = 'Пользователь не найден!';
-            }
-        } else {
-            $error_message = 'Отсутствует идентификатор записи!';
-        }
-
-        $this->render('edit', [
-            'sidebar' => UserOperations::getMenuLinks(),
-            'error_message' => $error_message,
-            'coming' => $coming
         ]);
     }
 }

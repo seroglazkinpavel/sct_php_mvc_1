@@ -1,3 +1,9 @@
+<?php
+
+/** @var array $brands -  Бренды*/
+/** @var array $hits - Новинки */
+
+?>
 <section>
     <div class="runner"><img src="/app/web/images/1963.jpg"></div>
     <div class="benefit">
