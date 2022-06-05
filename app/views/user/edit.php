@@ -32,7 +32,7 @@ use app\lib\UserOperations;
                                     <?= $error_message ?>
                                 <?php endif; ?>
                             </div>
-			    <?php if (!empty($user)) : ?>
+			                <?php if (!empty($user)) : ?>
                                 <div class="input_box">
                                     <label for="field_username">Имя</label>
                                     <input type="text"
@@ -40,32 +40,32 @@ use app\lib\UserOperations;
                                            id="field_username"
                                            class="form-control"
                                            maxlength="120"
-                                           value="<?=!empty($_POST['username']) ? $_POST['username'] : '' ?>"
+                                           value="<?=$user['username'] ?>"
                                            placeholder="Введите имя"
                                     >
                                 </div>
                                 <div class="input_box">
-                                    <label for="field_login">Пароль</label>
-                                    <input type="password"
-                                           name="user[password]"
-                                           id="field_password"
-                                           class="form-control"
-                                           maxlength="24"
-                                           value=""
-                                           placeholder="Введите пароль"
+                                   <label for="field_login">Логин</label>
+                                   <input type="text"
+                                        name="user[login]"
+                                        id="field_login"
+                                        class="form-control"
+                                        maxlength="24"
+                                        value="<?= $user['login'] ?>"
+                                        placeholder="Введите логин"
                                     >
                                 </div>
-                                <div class="input_box">
-                                    <label for="field_confirm_password">Повторите пароль</label>
-                                    <input type="password"
-                                           name="user[confirm_password]"
-                                         id="field_confirm_password"
-                                         class="form-control"
-                                         maxlength="24"
-                                         value=""
-                                         placeholder="Повторите пароль"
-                                  >
-                                </div>
+                            <div class="input_box">
+                                <label for="field_login">1(администратор) или 0(пользователь)</label>
+                                <input type="text"
+                                       name="user[is_admin]"
+                                       id="field_login"
+                                       class="form-control"
+                                       maxlength="24"
+                                       value="<?= $user['is_admin'] ?>"
+                                       placeholder="Введите 1 или 0"
+                                >
+                            </div>
                                 <div class="button_box">
                                   <button type="submit"
                                           name="btn_user_edit_form"
@@ -74,7 +74,7 @@ use app\lib\UserOperations;
                                           value="1"
                                   >Редактировать</button>
                                 <div>
-			    <?php endif;?>
+			                <?php endif;?>
                         </div>
                     </form>
                 </div>

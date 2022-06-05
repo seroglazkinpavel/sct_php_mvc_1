@@ -182,18 +182,15 @@ class AdminProductController extends InitController
             }
         }
 
-       /* if (!empty($product_id)) {
+        if (!empty($product_id)) {
             $productModel = new ProductModels();
             $product = $productModel->getProductById($product_id);
-            if ($product['result']) {
-                $this->redirect('/adminProduct/index');
-            }
             if (empty($product)) {
                 $error_message = 'Пользователь не найден!';
             }
         } else {
             $error_message = 'Отсутствует идентификатор записи!';
-        }*/
+        }
 
         $this->render('edit', [
             'sidebar' => UserOperations::getMenuLinks(),

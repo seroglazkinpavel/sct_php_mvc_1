@@ -27,6 +27,13 @@ class CategoryController extends InitController
                         'matchCallback' => function () {
                             $this->redirect('/user/login');
                         }
+                    ],
+                    [
+                        'actions' => ['products'],
+                        'roles' => [UserOperations::RoleAdmin],
+                        'matchCallback' => function () {
+                            $this->redirect('/user/login');
+                        }
                     ]
                 ]
             ]
@@ -82,4 +89,5 @@ class CategoryController extends InitController
             'category' => $category,
         ]);
     }
+
 }

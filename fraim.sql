@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 20 2022 г., 21:30
+-- Время создания: Июн 05 2022 г., 16:33
 -- Версия сервера: 10.3.22-MariaDB
 -- Версия PHP: 7.4.5
 
@@ -57,7 +57,7 @@ INSERT INTO `brand` (`id`, `title`, `alias`, `img`, `description`) VALUES
 --
 
 CREATE TABLE `category` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `category_id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL,
   `alias` varchar(255) NOT NULL,
   `parent_id` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
@@ -69,55 +69,14 @@ CREATE TABLE `category` (
 -- Дамп данных таблицы `category`
 --
 
-INSERT INTO `category` (`id`, `title`, `alias`, `parent_id`, `keywords`, `description`) VALUES
-(1, 'ЛУКОВИЧНЫЕ', 'луковичные', 0, 'Men', 'Men'),
-(2, 'МНОГОЛЕТНИКИ', 'мголетники', 0, 'Women', 'Women'),
-(3, 'ДЕКОРАТИВНЫЕ КУСТАРНИКИ', 'декораеивные кустарники', 0, 'Kids', 'Kids'),
-(4, 'ХВОЙНЫЕ', 'хвойные', 0, 'Электронные', 'Электронные'),
-(5, 'РОЗЫ', 'розы', 0, 'mehanicheskie', 'mehanicheskie'),
-(6, 'ПЛОДОВЫЕ', 'плодовые', 0, 'Casio', 'Casio'),
-(7, 'СОПУТСТВУЮЩИЕ ТОВАРЫ', 'сопутствующие товары', 0, 'Citizen', 'Citizen'),
-(8, '<img src=\"/app/web/images/lilii.jpg\">лилии', 'lilii', 1, 'Royal London', 'Royal London'),
-(9, '<img src=\"/app/web/images/georginy.jpg\">георгины', 'georginy', 1, 'Seiko', 'Seiko'),
-(10, '<img src=\"/app/web/images/gladiolus.jpg\">гладиолус', 'gladiolus', 1, 'Epos', 'Epos'),
-(11, '<img src=\"/app/web/images/krokusy.jpeg\">крокусы', 'krokusy', 1, 'Электронные', 'Электронные'),
-(12, '<img src=\"/app/web/images/tyulpany.jpeg\">тюльпаны', 'tyulpany', 1, 'Механические', 'Механические'),
-(13, '<img src=\"/app/web/images/iris-lukovichny.jpg\">ирис луковичный', 'iris-lukovichny', 1, 'Adriatica', 'Adriatica'),
-(14, '<img src=\"/app/web/images/gippeastrum.jpg\">гиппеаструм (амариллист)', 'gippeastrum', 1, 'Anne Klein', 'Anne Klein'),
-(15, '<img src=\"/app/web/images/gloksinii.jpeg\">глоксинии', 'gloksinii', 1, NULL, NULL),
-(16, '<img src=\"/app/web/images/lyutiki.jpeg\">лютики', 'lyutiki', 1, NULL, NULL),
-(17, '<img src=\"/app/web/images/begoniya.jpg\">бегония', 'begoniya', 1, NULL, NULL),
-(18, '<img src=\"/app/web/images/nartsissy.jpeg\">нарциссы', 'nartsissy', 1, NULL, NULL),
-(19, '<img src=\"/app/web/images/giatsinty.jpeg\">гиацинты', 'giatsinty', 1, NULL, NULL),
-(20, '<img src=\"/app/web/images/kalla.jpg\">калла', 'kalla', 1, NULL, NULL),
-(21, '<img src=\"/app/web/images/raznolukovichnye.jpg\">разнолуквичные', 'raznolukovichnye', 1, NULL, NULL),
-(22, '<img src=\"/app/web/images/allium.jpeg\">аллиум', 'allium', 1, NULL, NULL),
-(23, '<img src=\"/app/web/images/fritillyariya.jpeg\">фритиллярия', 'fritillyariya', 1, NULL, NULL),
-(24, '<img src=\"/app/web/images/muskari.jpeg\">мускари', 'muskari', 1, NULL, NULL),
-(25, '<img src=\"/app/web/images/bezvremennik.jpeg\">безвременник', 'bezvremennik', 1, NULL, NULL),
-(26, '<img src=\"/app/web/images/kanna.jpeg\">канна', 'kanna ', 1, NULL, NULL),
-(27, 'Лилии От гибриды', 'Lily From the hybrids', 21, NULL, NULL),
-(28, 'Георгины бахромчатые', 'Георгины бахромчатые', 22, NULL, NULL),
-(29, 'Азиатские лилии', 'Asian lilies', 21, NULL, NULL),
-(30, 'Лилии тигровые', 'Tiger lilies', 21, NULL, NULL),
-(31, 'Лилии ЛА гибриды', 'Lilies of LA hybrida', 21, NULL, NULL),
-(32, 'Восточные лилии', 'Oriental lilies', 21, NULL, NULL),
-(33, 'Георгины декоративные', 'Decorative dahlias', 22, NULL, NULL),
-(34, 'Георгины кактусовые', 'Cactus dahlias', 22, NULL, NULL),
-(35, 'Гладиолусы групноцветковые', 'Gladioli large-flowered', 23, NULL, NULL),
-(36, 'Бахромчатые', 'Fringed', 25, NULL, NULL),
-(37, 'Махровые', 'Terry towels', 25, NULL, NULL),
-(38, 'Многоцветковые', 'Many', 25, NULL, NULL),
-(39, 'Попугайные', 'Parakeets', 25, NULL, NULL),
-(40, 'Триумф', 'Triumph', 25, NULL, NULL),
-(41, 'Лилиецветные', 'Liliaceae', 25, NULL, NULL),
-(42, 'Крокусы ботанические', 'Crocuses botanical', 24, NULL, NULL),
-(43, 'Крокусы крупноцветковые', 'Large-flowered crocuses', 24, NULL, NULL),
-(44, 'Крокусы осеннецветущие', 'Autumn-flowering crocuses', 24, NULL, NULL),
-(45, 'Бухарский ирис', 'Bukhara irise', 26, NULL, NULL),
-(46, 'Голладские ирисы', 'Dutch irises', 26, NULL, NULL),
-(47, 'Донфорда', 'Dunford', 26, NULL, NULL),
-(48, 'Сетчатые ирисы', 'Netted irises', 26, NULL, NULL);
+INSERT INTO `category` (`category_id`, `title`, `alias`, `parent_id`, `keywords`, `description`) VALUES
+(1, 'ЛУКОВИЧНЫЕ', 'lukvechnye', 0, '', ''),
+(2, 'МНОГОЛЕТНИКИ', 'perennials', 0, '', ''),
+(3, 'КУСТАРНИКИ', 'ornamental-shrubs', 0, '', ''),
+(4, 'ХВОЙНЫЕ', 'coniferous', 0, '', ''),
+(5, 'РОЗЫ', 'roses', 0, '', ''),
+(6, 'ПЛОДОВЫЕ', 'fruit-trees', 0, '', ''),
+(7, 'ТОВАРЫ', 'related-products', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -211,10 +170,19 @@ INSERT INTO `product` (`id`, `category_id`, `brand_id`, `title`, `alias`, `conte
 (6, 2, 0, 'ФЛОКС JADE', 'jade', NULL, 248, 355, '1', NULL, NULL, '27.jpg', '1', 'упаковкой', 'a_32041217', 'Метельчатые', 'до 50 см', 'до 4 см', 'июль-август', 'солнце/полутень', 'Зона 3', 1, '', ''),
 (7, 2, 0, 'ФЛОКС TEQUILA SUNRISE', 'tequila-sunrise', NULL, 191, 0, '1', NULL, NULL, '26.jpg', '1', 'упаковкой', 'a_32041218', 'Метельчатые', 'до 60 см', 'до 3 см', 'июль-август', 'солнце/полутень', 'Зона 3', 1, '', ''),
 (8, 2, 0, 'ПЛАТИКОДОН ALBUM WHITE', 'album-white', NULL, 85, 0, '1', NULL, NULL, '21.jpg', '1', 'упаковкой', 'a_32041155', '', 'до 60 см', 'до 8 см', 'июль-август', 'солнце/полутень', 'Зона 4', 1, '', ''),
-(9, 6, 4, 'Royal London 20034-02', 'royal-london-20034-02', NULL, 110, 0, '1', NULL, NULL, 'no_image.jpg', '0', '', '', '', '0', '', '', '', '', 0, '', ''),
-(10, 6, 4, 'Royal London 41156-02', 'royal-london-41156-02', NULL, 100, 0, '1', NULL, NULL, 'no_image.jpg', '1', '', '', '', '0', '', '', '', '', 0, '', ''),
-(49, 1, NULL, '', '', NULL, 70, 0, '1', NULL, NULL, 'no_image.jpg', '0', '', 'a_32041160', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(50, 1, NULL, 'название товаqwertyuiра', 'hgfds', NULL, 345, 0, '1', NULL, NULL, 'no_image.jpg', '0', 'контейнером', 'a_32041159', 'klass', '87', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(9, 6, 4, 'Royal London 20034-02', 'royal-london-20034-02', NULL, 110, 0, '1', NULL, NULL, 'Jenny.jpg', '0', 'упаковкой', 'a_32567890', '', 'до 40 см', 'до 6 см', 'июль-август', 'солнце', 'Зона 3', 0, '', ''),
+(10, 6, 4, 'Royal London 41156-02', 'royal-london-41156-02', NULL, 100, 0, '1', NULL, NULL, 'Weiki.jpg', '1', 'упаковкой', '6754', '', 'до 7 см', 'до 6 см', 'июль-август', 'солнце/полутень', 'Зона 8', 0, '', ''),
+(49, 1, NULL, 'ГЕОРГИНА ADVANCE', 'advance', NULL, 170, 0, '1', NULL, NULL, 'Advance.png', '0', 'упаковкой', 'a_32041160', '', 'до 24 см', 'до 110 см', 'июнь-сентябрь', 'солнце', 'Зона 10', NULL, NULL, NULL),
+(50, 1, NULL, 'ЛИЛИЯ AFRICAN LADY', 'african-lady', NULL, 345, 0, '1', NULL, NULL, 'AfricanLady.jpg', '0', 'упаковкой', '2038', NULL, 'до 25 см', 'до 110 см', 'июль-август', 'солнце/полутень', 'Зона 5', NULL, NULL, NULL),
+(54, 1, NULL, 'ФРИТИЛЛЯРИЯ AURORE', 'aurora', NULL, 346, 0, '1', NULL, NULL, 'Aurora.jpg', '0', 'упаковкой', '501', NULL, 'до 60 см', 'до 6 см', 'апрель-май', 'солнце', 'Зона 5', NULL, NULL, NULL),
+(55, 6, NULL, 'Голубика Bluecrop', ' bluecrop', NULL, 70, 0, '1', NULL, NULL, 'Bluecrop.jpg', '0', 'упаковкой', 'a_3256786', '', 'до 120 см', 'до 5 см', 'апрель-май', 'солнце/полутень', 'Зона 4', NULL, NULL, NULL),
+(56, 1, NULL, 'qwerty', 'alias', NULL, 675, 0, '1', NULL, NULL, '24.jpg', '0', 'контейнером', '678598', 'klass', '56', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(57, 3, NULL, 'Азалия Amoena', 'amoena', NULL, 354, 0, '1', NULL, NULL, 'amoena.jpg', '0', 'упаковкой', 'a_8654365', NULL, 'до 80 см', '15-20 см', 'май-июнь', 'полутень', 'Зона 5', NULL, NULL, NULL),
+(58, 3, NULL, 'Азалия Arabesk', 'arabesk', NULL, 420, 0, '1', NULL, NULL, 'arabesk.jpg', '0', 'контейнером', 'a_3245678', NULL, 'до 40 см', 'до 57 см', 'май', 'полутень', 'Зона 4', NULL, NULL, NULL),
+(59, 4, NULL, 'Ель канадская (сизая) Сандерс Блю', 'сандерс ', NULL, 231, 0, '1', NULL, NULL, 'сандерс.jpg', '0', 'контейнером', 'a_32754346', NULL, 'до 54 см', 'до 15-20 см', 'июль-август', 'полутень', 'Зона 5', NULL, NULL, NULL),
+(60, 5, NULL, 'Роза Абракадабра', 'abracadabra', NULL, 299, 0, '1', NULL, NULL, 'abracadabra.jpg', '0', 'упаковкой', 'a_3265478', 'флорибунда', 'до 43 см', 'до 12 см', 'июнь-ноябрь', 'полутень', 'Зона 6', NULL, NULL, NULL),
+(61, 7, NULL, 'BF - сад с/у радуга для гортензий 100 г', 'rainbow', NULL, 345, 0, '1', NULL, NULL, 'rainbow.jpg', '0', NULL, 'a_32567898', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(62, 3, NULL, 'Азалия Fridoline', 'fridoline', NULL, 214, 0, '1', NULL, NULL, 'fridoline.jpg', '0', 'упаковкой', 'a_32765678', NULL, 'до 100 см', 'до 5 см', 'май-июнь', 'полутень', 'Зона 4', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -240,7 +208,8 @@ INSERT INTO `product_order` (`id`, `user_name`, `user_phone`, `user_email`, `use
 (32, 'Anna', '34567890', 'ann@email.ru', 7, '2022-04-09 19:24:22', '{\"4\":1,\"3\":1}'),
 (33, 'Luba', '12345678', 'tfgy@bk.ru', 19, '2022-04-09 19:30:08', '{\"5\":1,\"6\":1,\"7\":1}'),
 (34, 'gena', '89274847665', 'tfgy@bk.ru', NULL, '2022-04-13 10:31:07', '{\"1\":1}'),
-(35, 'pavel', '+79297404947', 'seroglazkinpavel@yandex.ru', 18, '2022-04-13 12:44:22', '{\"1\":1,\"7\":1,\"5\":1,\"4\":2}');
+(35, 'pavel', '+79297404947', 'seroglazkinpavel@yandex.ru', 18, '2022-04-13 12:44:22', '{\"1\":1,\"7\":1,\"5\":1,\"4\":2}'),
+(37, 'Anna', '1234567890', 'ann@email.ru', NULL, '2022-04-28 19:13:55', '{\"1\":3}');
 
 -- --------------------------------------------------------
 
@@ -263,7 +232,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `login`, `password`, `is_admin`) VALUES
 (5, 'Pavel', 'Admin', '$2y$10$dH6LBYFk1y6HUAV3u7oilOICWlLNSRr2N599u.93eAv/NR7sdRTce', 1),
 (7, 'Anna', 'Anna', '$2y$10$QPXeIW2NDCny0KVCyoiEsOG5JWnjdbZvmZirD4/Ws2hsCSRKWu/wS', 0),
-(19, 'Luba', 'Luba', '$2y$10$lbJ6B.2FRUwJe8h4ZwWeqO9eM0TGchhTg3IYmxFy5U8maRqXKSwQW', 0);
+(19, 'Luba', 'Luba', '$2y$10$lbJ6B.2FRUwJe8h4ZwWeqO9eM0TGchhTg3IYmxFy5U8maRqXKSwQW', 0),
+(22, 'Юля', 'Julia', '$2y$10$Cpo717zm1sjkiXubJYeZ4ulA8fOnafWhi1vrb93vq6d1QqJtXpKDy', 1);
 
 --
 -- Индексы сохранённых таблиц
@@ -280,7 +250,7 @@ ALTER TABLE `brand`
 -- Индексы таблицы `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`category_id`),
   ADD UNIQUE KEY `alias` (`alias`);
 
 --
@@ -330,7 +300,7 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT для таблицы `coming`
@@ -348,19 +318,19 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT для таблицы `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT для таблицы `product_order`
 --
 ALTER TABLE `product_order`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

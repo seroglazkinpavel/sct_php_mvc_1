@@ -180,20 +180,18 @@ class UsersModel extends BaseModel
             $error_message = 'Отсутствует идентификатор пользователя!';
         } elseif (empty($user_data['username'])) {
             $error_message = 'Введите Ваше имя!';
-        } elseif (empty($user_data['password'])) {
-            $error_message = 'Введите пароль!';
-        } elseif (empty($user_data['confirm_password'])) {
-            $error_message = 'Введите повторный пароль!';
-        } elseif ($user_data['password'] !== $user_data['confirm_password']) {
-            $error_message = 'Пароли не совпадают!';
+        } elseif (empty($user_data['login'])) {
+            $error_message = 'Введите логин!';
+        } elseif (empty($user_data['is_admin'])) {
+            $error_message = 'Введите роль is_admin!';
         }
         if (empty($error_message)) {
-            $user_data['password'] = password_hash($user_data['password'], PASSWORD_DEFAULT);
             $user_id = $this->update(
-                'UPDATE `users` SET `username`=:username, `password`=:password WHERE `id`=:id',
+                'UPDATE `users` SET `username`=:username, `login`=:login, `is_admin`=:is_admin WHERE `id`=:id',
                 [
                     'username' => $user_data['username'],
-                    'password' => $user_data['password'],
+                    'login' => $user_data['login'],
+                    'is_admin' => $user_data['is_admin'],
                     'id' => $user_id
                 ]
             );

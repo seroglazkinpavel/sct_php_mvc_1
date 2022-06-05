@@ -1,3 +1,8 @@
+<?php
+
+/** @var array $productsList -товары  */
+
+?>
 <div class="userPanel">
 	<div class="cabinet_sidebar">
         <?php if (!empty($sidebar)) :?>

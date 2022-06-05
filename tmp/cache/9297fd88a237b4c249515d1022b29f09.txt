@@ -12,4 +12,4 @@ a:2:{s:4:"data";s:515:"<li>
     <a href="/category/fruit-trees">ПЛОДОВЫЕ</a>
     </li><li>
     <a href="/category/related-products">ТОВАРЫ</a>
-    </li>";s:8:"end_time";i:1653141768;}
+    </li>";s:8:"end_time";i:1654438965;}

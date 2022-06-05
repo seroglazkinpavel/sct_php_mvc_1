@@ -224,6 +224,7 @@ class UserController extends InitController
             if (!empty($user_data)) {
                 $userModel = new UsersModel();
                 $result_edit = $userModel->edit($user_id, $user_data);
+
                 if ($result_edit['result']) {
                     $this->redirect('/user/users');
                 } else {

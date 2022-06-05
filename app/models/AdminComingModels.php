@@ -147,21 +147,4 @@ class AdminComingModels extends BaseModel
             'error_message' => $error_message
         ];
     }
-	
-	/*public function getComingById($coming_id)
-    {
-        $result = null;
-
-        $coming = $this->select(
-            "SELECT * FROM `coming` WHERE `id`=:id",
-            [
-                'id' => $coming_id
-            ]
-        );
-
-        if (!empty($coming[0])) {
-            $result = $coming[0];
-        }
-        return $result;
-    }*/
 }

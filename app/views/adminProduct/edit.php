@@ -35,6 +35,7 @@
  				<?php endif; ?>
  			</select>
             </div>-->
+            <?php if (!empty($product)) : ?>
             <div class="input_box">
                 <label for="field_title">Название товара</label>
                 <input type="text"
@@ -43,7 +44,7 @@
                        class="form-control"
                        maxlength="120"
                        placeholder="Введите Название товара"
-                       value="<?= !empty($_POST['product']['title']) ? $_POST['product']['title'] : '' ?>"
+                       value="<?= $product['title'] ?>"
                 >
             </div>
             <div class="input_box">
@@ -54,7 +55,7 @@
                        class="form-control"
                        maxlength="120"
                        placeholder="Введите алиас"
-                       value="<?= !empty($_POST['product']['alias']) ? $_POST['product']['alias'] : '' ?>"
+                       value="<?= $product['alias'] ?>"
                 >
             </div>
             <div class="input_box">
@@ -65,7 +66,7 @@
                        class="form-control"
                        maxlength="24"
                        placeholder="Введите стоимость"
-                       value="<?= !empty($_POST['product']['price']) ? $_POST['product']['price'] : '' ?>"
+                       value="<?= $product['price'] ?>"
                 >
             </div>
             <div class="celect_box">
@@ -83,7 +84,7 @@
                        class="form-control"
                        maxlength="120"
                        placeholder="Введите как отправляются"
-                       value="<?= !empty($_POST['product']['depart']) ? $_POST['product']['depart'] : '' ?>"
+                       value="<?= $product['depart'] ?>"
                 >
             </div>
             <div class="input_box">
@@ -94,7 +95,7 @@
                        class="form-control"
                        maxlength="24"
                        placeholder="Введите артикул"
-                       value="<?= !empty($_POST['product']['article']) ? $_POST['product']['article'] : '' ?>"
+                       value="<?= $product['article'] ?>"
                 >
             </div>
             <div class="input_box">
@@ -105,7 +106,7 @@
                        class="form-control"
                        maxlength="24"
                        placeholder="Введите класс"
-                       value="<?= !empty($_POST['product']['grade']) ? $_POST['product']['grade'] : '' ?>"
+                       value="<?= $product['grade'] ?>"
                 >
             </div>
             <div class="input_box">
@@ -116,7 +117,7 @@
                        class="form-control"
                        maxlength="24"
                        placeholder="Введите высоту"
-                       value="<?= !empty($_POST['product']['height']) ? $_POST['product']['height'] : '' ?>"
+                       value="<?= $product['height'] ?>"
                 >
             </div>
             <div class="input_box">
@@ -127,7 +128,7 @@
                        class="form-control"
                        maxlength="24"
                        placeholder="Введите изображение товара "
-                       value="<?= !empty($_POST['img']) ? $_POST['img'] : '' ?>"
+                       value="<?= $product['img'] ?>"
                 >
             </div>
 
@@ -147,6 +148,7 @@
                 >Редактировать
                 </button>
             </div>
+            <?php endif;?>
         </div>
     </form>
 </div>
