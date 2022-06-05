@@ -121,10 +121,6 @@ class AdminCategoryController extends InitController
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['btn_coming_notDelete_form'])) {
             $this->redirect('/adminCategory/index');
         }
-        /**
-         *
-         * @param string $key - ключ массива кэша
-         */
 
         $this->render('delete', [
             'sidebar' => UserOperations::getMenuLinks(),
