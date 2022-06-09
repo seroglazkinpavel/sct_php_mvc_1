@@ -71,6 +71,7 @@ class AdminCategoryController extends InitController
             if (!empty($options)) {
                 $addendumModel = new AdminCategoryModels();
                 $result_add = $addendumModel->getProductAddendum($options);
+                $this->deleteCache();
                 if ($result_add['result']) {
                     $this->redirect('/adminCategory/index');
                 } else {
@@ -110,7 +111,7 @@ class AdminCategoryController extends InitController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['btn_coming_delete_form'])) {
             $result_delete = $categoryModel->deleteById($category_id);
-
+            $this->deleteCache();
             if ($result_delete['result']) {
                 $this->redirect('/adminCategory/index');
             } else {
@@ -152,6 +153,7 @@ class AdminCategoryController extends InitController
             if (!empty($category_data)) {
                 $categoryModel = new AdminCategoryModels();
                 $result_edit = $categoryModel->edit($category_id, $category_data);
+                $this->deleteCache();
                 if ($result_edit['result']) {
                     $this->redirect('/adminCategory/index');
                 } else {
@@ -176,5 +178,22 @@ class AdminCategoryController extends InitController
             'error_message' => $error_message,
             'category' => $category
         ]);
+    }
+
+    /**
+     *
+     * удаление из кэша категории
+     *
+     */
+    public function deleteCache() {
+        $adr = $_SERVER['DOCUMENT_ROOT'] . '/tmp/cache';
+        $paths = scandir($adr);
+        foreach($paths as $path) {
+            if ($path != '.' and $path != '..') {
+                if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/tmp/cache/' . $path)) {
+                    unlink($_SERVER['DOCUMENT_ROOT'] . '/tmp/cache/' . $path);
+                }
+            }
+        }
     }
 }
